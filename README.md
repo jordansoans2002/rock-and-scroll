@@ -41,7 +41,7 @@ Sample request:
         },
         "background": {
           "color": "#000000",
-          "opacity": "1"
+          "opacity": 1
         }
       }
     },
@@ -74,7 +74,7 @@ Sample request:
         },
         "background": {
           "color": "#000000",
-          "opacity": "0.5"
+          "opacity": 0.5
         }
       }
     }

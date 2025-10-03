@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
-import { generateController } from "../controllers/generateController";
+import { generatePresentationController } from "../controllers/generatePresentationController";
 
 export default async function routes(app: FastifyInstance) {
-  app.post("/generate-pptx", generateController);
+  app.post("/generate-pptx", generatePresentationController);
 }

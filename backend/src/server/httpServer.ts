@@ -20,8 +20,8 @@ export async function createServer() {
   })
 
   await app.register(rateLimit, {
-    max: 200,
-    timeWindow: "15 minutes"
+    max: config.maxRequests,
+    timeWindow: config.timeWindow
   })
 
   // Register routes

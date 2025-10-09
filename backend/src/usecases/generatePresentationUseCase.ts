@@ -12,6 +12,8 @@ export class GeneratePresentationUseCase {
 
         const presentation = this.generator.renderSlideLayout(payload.settings.slideRatio)        
         for(const song of payload.songs) {
+            // TODO integrate separation by stanzas
+            const partsByStanza = this.splitByStanzas(song.text, song.settings.stanzas)
             const partsBySybmol = this.splitBySymbol(song.text, song.settings.separation.symbol);
             if(partsBySybmol.length > config.pptRequestLimits.maxSlidesPerSong) {
                 throw new Error(`Song: ${song.title} is separated by symbol ${song.settings.separation.symbol} into too many slides. Max allowed is ${config.pptRequestLimits.maxSlidesPerSong}`)
@@ -31,6 +33,12 @@ export class GeneratePresentationUseCase {
         }    
         
         return this.generator.generatePresentationBuffer(presentation);
+    }
+
+    private splitByStanzas(text: { text1: string; text2?: string | null; }, stanzas: Array<Number>) {
+        if (stanzas.length == 0) {
+            return text
+        }
     }
 
     private splitBySymbol(text: { text1: string; text2?: string | null; }, symbol?: string | null) {

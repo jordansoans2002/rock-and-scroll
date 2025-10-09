@@ -1,0 +1,72 @@
+.buttonBar {
+    display: flex; /* Align buttons horizontally */
+    gap: 0.75rem; /* Space between buttons (12px) */
+    align-items: center; /* Vertically center buttons */
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+/* Without padding - buttons would be too small to click comfortably */
+/* Without transition - hover effects would be jarring */
+/* Without border: 1px solid transparent - hover border would cause layout shift */
+
+.button:focus-visible {
+  outline: 2px solid #3b82f6; /* Blue outline for keyboard navigation */
+  outline-offset: 2px; /* Space between button and outline */
+}
+/* Without focus-visible - keyboard users wouldn't see which button is focused */
+
+.button:disabled {
+  opacity: 0.5; /* Fade out disabled buttons */
+  cursor: not-allowed; /* Show not-allowed cursor */
+}
+/* Without opacity - disabled state wouldn't be visible */
+/* Without cursor change - users wouldn't know button is disabled */
+
+.button:active:not(:disabled) {
+  transform: translateY(1px); /* Subtle press effect */
+}
+/* Without this - no tactile feedback on click */
+
+/* ==================================================================
+   PRIMARY BUTTON - Main action (e.g., Save)
+   ================================================================== */
+.buttonPrimary {
+  background-color: #3b82f6; /* Blue background */
+  color: #ffffff; /* White text */
+  border-color: #3b82f6; /* Blue border */
+}
+/* Without background-color - button would be invisible/unclear */
+
+.buttonPrimary:hover:not(:disabled) {
+  background-color: #2563eb; /* Darker blue on hover */
+  border-color: #2563eb;
+}
+/* Without hover state - no feedback on interaction */
+
+/* ==================================================================
+   SECONDARY BUTTON - Secondary actions (e.g., Reset)
+   ================================================================== */
+.buttonSecondary {
+  background-color: #ffffff; /* White background */
+  color: #374151; /* Dark gray text */
+  border-color: #d1d5db; /* Light gray border */
+}
+
+.buttonSecondary:hover:not(:disabled) {
+  background-color: #f9fafb; /* Very light gray on hover */
+  border-color: #9ca3af; /* Darker gray border */
+}
+
+/* ==================================================================
+   DANGER BUTTON - Destructive actions (e.g., Delete)
+   ================================================================== */
+.buttonDanger {
+  background-color: #ef4444; /* Red background */
+  color: #ffffff; /* White text */
+  border-color: #ef4444; /* Red border */
+}
+
+.buttonDanger:hover:not(:disabled) {
+  background-color: #dc2626; /* Darker red on hover */
+  border-color: #dc2626;
+}

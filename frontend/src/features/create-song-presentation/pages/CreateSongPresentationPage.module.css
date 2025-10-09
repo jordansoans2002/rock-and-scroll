@@ -1,0 +1,64 @@
+.createSongPresentation {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  padding: 0.25rem;
+}
+
+.mainRow {
+  display: flex;
+  flex: 1;
+}
+
+.songList {
+  flex: 0 0 var(--song-list-width, 250px);
+  min-width: calc(var(--song-list-min-width) * 1px);
+  max-width: calc(var(--song-list-max-width) * 1px);
+  border-right: 1px solid #ddd;
+  background: #fafafa;
+  overflow: auto;
+  background-color: red;
+}
+
+.songEditor {
+  flex: 1;
+  padding: 0.25rem;
+  overflow: auto;
+}
+
+.settings {
+  flex: 0 0 var(--settings-width, 300px);
+  min-width: calc(var(--settings-min-width) * 1px);
+  max-width: calc(var(--settings-max-width) * 1px);
+  border-left: 1px solid #ddd;
+  background: #f9f9f9;
+  overflow: auto;
+}
+
+
+.resizerVertical {
+  width: 5px;
+  cursor: col-resize;
+  background: transparent;
+  transition: background 0.2s;
+}
+.resizerHorizontal {
+  height: 5px;
+  cursor: row-resize;
+  background: transparent;
+  transition: background 0.2s;
+}
+.resizerVertical:hover .resizerHorizontal:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.previewTray {
+  flex: 0 0 var(--preview-height, 200px);
+  min-height: calc(var(--preview-min-height) * 1px);
+  max-height: calc(var(--preview-max-height) * 1px);
+  border-top: 1px solid #ddd;
+  background: #fff;
+  overflow: auto;
+}

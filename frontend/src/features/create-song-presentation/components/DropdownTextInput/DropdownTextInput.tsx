@@ -172,7 +172,10 @@ export default function DropdownTextInput<T = string>({
                     className={inputClasses}
                 />
 
-                <div className={styles.arrow}>
+                <div
+                    onClick={() => setIsOpen(!isOpen)} 
+                    className={styles.arrow}>
+                    
                     <svg
                         className={arrowIconClasses}
                         fill="none"

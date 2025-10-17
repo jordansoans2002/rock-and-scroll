@@ -1,9 +1,9 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { GeneratePresentationRequest, GeneratePresentationRequestSchema } from "../dto/generatePresentationRequestDto";
+import { GeneratePresentationRequestSchema } from "../dto/generatePresentationRequestDto";
 import { MockGenerator } from "../services/presentationGenerator/MockPresentationGenerator";
 import { GeneratePresentationUseCase } from "../usecases/generatePresentationUseCase";
-import { RealPresentationGenerator2 } from "../services/presentationGenerator/RealPresentationGenerator2";
 import { RealPresentationGenerator } from "../services/presentationGenerator/RealPresentationGenerator";
+import { GeneratePresentationRequest } from "@rock-and-scroll/shared/types/settings";
 
 
 export async function generatePresentationController(

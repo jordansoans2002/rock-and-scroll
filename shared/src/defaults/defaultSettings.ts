@@ -37,6 +37,6 @@ export const DEFAULT_SONG_SETTINGS: SongSettings = {
 
 export const DEFAULT_PRESENTATION_SETTINGS: PresentationSettings = {
     slideRatio: "16x9",
-    unit: "in",
+    unit: "px",
     titleStyle: DEFAULT_TEXT_STYLE
 } 

@@ -1,7 +1,7 @@
 import PptxGenJS from "pptxgenjs";
-import { GeneratePresentationRequest, SongSettings, TextStyle } from "../../dto/generatePresentationRequestDto";
 import { IPresentationGenerator } from "./IPresentationGenerator";
 import { SlideRatio, Unit } from "./layout";
+import { TextStyle, SongSettings } from "@rock-and-scroll/shared/types/settings";
 
 export class MockGenerator implements IPresentationGenerator {
     renderSlideLayout(ratio: SlideRatio): PptxGenJS {

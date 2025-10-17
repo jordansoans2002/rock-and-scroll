@@ -1,7 +1,7 @@
 import PptxGenJS from "pptxgenjs";
 import { IPresentationGenerator } from "./IPresentationGenerator";
-import { GeneratePresentationRequest, SongSettings, TextStyle } from "../../dto/generatePresentationRequestDto";
 import { Orientation, SLIDE_HEIGHT_INCHES, SLIDE_WIDTH_INCHES, SlideRatio, Unit } from "./layout";
+import { TextStyle, SongSettings } from "@rock-and-scroll/shared/types/settings";
 
 
 export class RealPresentationGenerator implements IPresentationGenerator {

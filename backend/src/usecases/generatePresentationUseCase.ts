@@ -1,5 +1,5 @@
+import { GeneratePresentationRequest } from "@rock-and-scroll/shared/types/settings";
 import config from "../config";
-import { GeneratePresentationRequest } from "../dto/generatePresentationRequestDto";
 import { IPresentationGenerator } from "../services/presentationGenerator/IPresentationGenerator";
 
 export class GeneratePresentationUseCase {

@@ -1,4 +1,4 @@
-import type { SongOverview } from "../../types/Song";
+import type { SongOverview } from "../../types/song";
 
 export interface SongOverviewProps {
     song: SongOverview;

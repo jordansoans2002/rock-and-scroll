@@ -107,7 +107,7 @@ export const useResizablePanels = () => {
             }
         };
 
-        const onPointerUp = (upEv: PointerEvent) => {
+        const onPointerUp = (_: PointerEvent) => {
             if(raf) cancelAnimationFrame(raf);
             const final = Math.min(Math.max(latest, cfg.minSize), cfg.maxSize);
             cfg.commit(final);

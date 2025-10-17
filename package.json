@@ -1,1 +1,17 @@
-{}
+{
+  "name": "rock-and-scroll",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "dev:all": "pnpm --parallel --filter frontend --filter backend dev",
+    "build:frontend": "pnpm --filter frontend build",
+    "build:backend": "pnpm --filter backend build",
+    "build:all": "pnpm --filter frontend build && pnpm --filter backend build",
+    "clean": "pnpm --recursive exec rm -rf dist node_modules"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

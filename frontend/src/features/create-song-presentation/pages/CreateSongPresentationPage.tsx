@@ -1,15 +1,15 @@
-import SettingsPanel from "../components/SettingsPanel/SettingsPanel";
 import SlidePreviewTray from "../components/SlidePreviewTray/SlidePreviewTray";
 import SongInput from "../components/SongInput/SongInput";
 import SongList from "../components/SongList/SongList";
 
 import styles from "./CreateSongPresentationPage.module.css";
-import { getSongOverview } from "../types/Song";
+import { getSongOverview } from "../types/song";
 import ButtonBar from "../components/ButtonBar/ButtonBar";
 import type { ButtonConfig } from "../components/ButtonBar/ButtonBar.types";
 import { useSongEditor } from "../hooks/useSongEditor";
 import { useResizablePanels } from "../hooks/useResizablePanels";
 import { useMemo } from "react";
+import SettingsPanel from "../components/SettingsPanel/SettingsPanel";
 
 
 

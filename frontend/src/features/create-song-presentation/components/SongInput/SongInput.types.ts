@@ -1,4 +1,4 @@
-import type { Song } from "../../types/Song";
+import type { Song } from "../../types/song";
 
 export interface SongInputProps{
     song: Song;

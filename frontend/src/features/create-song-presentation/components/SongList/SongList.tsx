@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import SongOverviewCard from "../SongOverviewCard/SongOverviewCard";
 import type { SongListProps } from "./SongList.types";
-import type { SongOverview } from "../../types/Song";
+import type { SongOverview } from "../../types/song";
 
 import styles from "./SongList.module.css"
 

@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { getBlankSong, type Song, type SongOverview } from "../types/Song";
+import { getBlankSong, type Song, type SongOverview } from "../types/song";
 
 
 export const useSongEditor = () => {

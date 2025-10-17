@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import DropdownTextInput from "../DropdownTextInput/DropdownTextInput";
 
 import styles from "./LyricsInput.module.css"

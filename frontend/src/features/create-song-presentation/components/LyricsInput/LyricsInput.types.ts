@@ -3,7 +3,7 @@ export interface LyricsInputProps {
     onLanguageChange: (value: string) => void;
     languageSuggestions: string[];
 
-    lyrics: string;
+    lyrics?: string;
     onLyricsChange: (value: string) => void;
 
     onSave: () => void;

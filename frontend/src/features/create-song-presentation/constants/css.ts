@@ -11,21 +11,3 @@ export const CSS_VARS = {
   PREVIEW_MIN: "--preview-min-height",
   PREVIEW_MAX: "--preview-max-height",
 } as const;
-
-export const LAYOUT_DEFAULTS = {
-  songList: {
-    width: 250,
-    min: 250,
-    max: 300,
-  },
-  settings: {
-    width: 200,
-    min: 200,
-    max: 300,
-  },
-  preview: {
-    height: 200,
-    min: 100,
-    max: 400,
-  },
-} as const;

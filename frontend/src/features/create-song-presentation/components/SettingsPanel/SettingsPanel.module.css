@@ -1,0 +1,36 @@
+:root {
+  --setting-height: 2rem; /* 32px - consistent height for all controls */
+  --setting-font-size: 0.875rem; /* 14px */
+  --setting-border-radius: 0.25rem; /* 4px */
+  --setting-border-color: #d1d5db;
+  --setting-focus-color: #3b82f6;
+}
+
+.baseSetting {
+    height: var(--setting-height);
+    width: 100%;
+    padding: 0 0.5rem;
+    border: 1px solid var(--setting-border-color);
+    border-radius: var(--setting-border-radius);
+    font-size: var(--setting-font-size);
+    font-family: inherit;
+    color: #1f2937;
+    background-color: #ffffff; /* can keep transparent with no border*/
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.baseSetting:focus {
+    border-color: var(--setting-focus-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.baseSetting:hover:not(:disabled) {
+    border-color: #9ca3af;
+}
+
+.baseSetting:disabled {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+}

@@ -1,42 +1,30 @@
+@import "../SettingsPanel/SettingsPanel.module.css";
 .wrapper {
     position: relative;
+    width: 100%;
+    height: var(--setting-height)
 }
 
 .container {
     position: relative;
+    height: 100%;
 }
 
 .input {
     width: 100%;
-    padding: 0.5rem 2.5rem 0.5rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.5rem;
-    outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2 ease;
-    font-size: 1rem;
-    background-color: #ffffff;
-    font-family: inherit;
-    color: #1f2937;
-}
-.input:focus {
-    border: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    height: 100%;
+    padding-right: 2rem;
 }
 
-.intputError {
-    border-color: #ef4444;
-}
-.inputError:focus {
-    border-color: #ef4444;
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+.dropdownSelect:hover {
+    cursor: pointer;
 }
 
 .arrow {
     position: absolute;
-    right: 0.75rem;
+    right: 0.5rem;
     top:50%;
     transform: translateY(-50%);
-    /* pointer-events: none; */
     display: flex;
     align-items: center;
 }

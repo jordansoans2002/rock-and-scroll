@@ -1,4 +1,4 @@
-export type SettingType = "number" | "color" | "select" | "autocomplete";
+export type SettingType = "number" | "color" | "dropdownSelect" | "dropdownText";
 
 export interface SETTINGS_METADATA<T = any> {
     key: string;

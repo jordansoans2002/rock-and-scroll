@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import type { DropdownTextInputProps } from "./DropdownTextInput.types";
 
 import styles from "./DropdownTextInput.module.css"
+import baseStyles from "../SettingsPanel/SettingsPanel.module.css"
 
 export default function DropdownTextInput<T = string>({
     placeholder = "Type or select...",
@@ -12,6 +13,8 @@ export default function DropdownTextInput<T = string>({
     filterFunction,
     getDisplayValue = (item) => String(item),
     disabled = false,
+    allowCustom = true,
+    editable = true,
     error,
     className = ''
 }: DropdownTextInputProps<T>) {
@@ -130,7 +133,9 @@ export default function DropdownTextInput<T = string>({
     // Dynamic classes for input based on state
     const inputClasses = [
         styles.input,
+        baseStyles.baseSetting,
         error && styles.inputError,
+        !editable && styles.dropdownSelect,
         disabled && styles.inputDisabled,
     ]
         .filter(Boolean)
@@ -170,6 +175,7 @@ export default function DropdownTextInput<T = string>({
                     aria-autocomplete="list"
                     aria-controls="autocomplete-listbox"
                     className={inputClasses}
+                    readOnly={ !editable }
                 />
 
                 <div

@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
-import { getBlankSong, type Song, type SongOverview } from "../types/song";
+import { Song } from "@rock-and-scroll/shared/types/settings";
+import { getBlankSong, SongOverview } from "../types/song";
 
 
 export const useSongEditor = () => {
@@ -22,18 +23,24 @@ export const useSongEditor = () => {
     }, [updateSongField]);
     
     const handleLanguage1Update = useCallback((lang1: string) => {
-        updateSongField('language1', lang1, true);
+        updateSongField('lang1', lang1, true);
     },[updateSongField]);
     const handleLanguage2Update = useCallback((lang2: string) => {
-        updateSongField('language2', lang2, true);
+        updateSongField('lang2', lang2, true);
     },[updateSongField]);
 
     const handleLyrics1Update = useCallback((lyrics1: string) => {
-        updateSongField('lyrics1', lyrics1, false);
+        if(lyrics1.trim() === "")
+            updateSongField('text1', null, false);
+        else
+            updateSongField('text1', lyrics1, false);
     }, [updateSongField]);
     const handleLyrics2Update = useCallback((lyrics2: string) => {
-        updateSongField('lyrics2', lyrics2, false);
-    }, [selectedSong]);
+        if(lyrics2.trim() === "")
+            updateSongField('text2', null, false);
+        else
+            updateSongField('text2', lyrics2, false);
+    }, [updateSongField]);
 
     const handleSelectSong = useCallback((id: string) => {
         const song = songs.find(s => s.id === id);

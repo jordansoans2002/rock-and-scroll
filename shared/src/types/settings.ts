@@ -40,11 +40,12 @@ export interface PresentationSettings {
 }
 
 export interface Song {
+    id: string;
     title: string;
-    text: {
-        text1: string;
-        text2: string | null;
-    }
+    lang1: string | null;
+    text1: string | null;
+    lang2: string | null;
+    text2: string | null;
     settings: SongSettings;
 }
 

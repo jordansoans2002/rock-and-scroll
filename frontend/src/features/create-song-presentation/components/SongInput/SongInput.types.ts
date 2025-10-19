@@ -1,4 +1,4 @@
-import type { Song } from "../../types/song";
+import { Song } from "@rock-and-scroll/shared/types/settings";
 
 export interface SongInputProps{
     song: Song;

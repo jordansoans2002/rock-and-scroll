@@ -1,4 +1,4 @@
-export type SettingType = "number" | "color" | "dropdownSelect" | "autocomplete";
+export type SettingType = "number" | "color" | "dropdownSelect" | "dropdownText";
 
 export interface BaseSetting<T> {
     key: string;
@@ -24,8 +24,8 @@ export interface DropdownSelectSetting<T = string> extends BaseSetting<T> {
     options: Array<{ label: string; value: T }>
 }
 
-export interface AutocompleteSetting extends BaseSetting<string> {
-    type: 'autocomplete'
+export interface DropdownTextSetting extends BaseSetting<string> {
+    type: 'dropdownText'
     suggestions: string[];
     allowCustom: boolean;
 }
@@ -34,7 +34,7 @@ export type Setting =
     | NumberSetting
     | ColorSetting
     | DropdownSelectSetting
-    | AutocompleteSetting;
+    | DropdownTextSetting;
 
 export interface SettingsSchema {
     [key: string]: Setting
@@ -49,5 +49,5 @@ export const isColorSetting = (setting: Setting): setting is ColorSetting =>
 export const isDropdownSelectSetting = (setting: Setting): setting is DropdownSelectSetting =>
     setting.type === 'dropdownSelect';
 
-export const isAutocompleteSetting = (setting: Setting): setting is AutocompleteSetting =>
-    setting.type === 'autocomplete';
+export const isDropdownTextSetting = (setting: Setting): setting is DropdownTextSetting =>
+    setting.type === 'dropdownText';

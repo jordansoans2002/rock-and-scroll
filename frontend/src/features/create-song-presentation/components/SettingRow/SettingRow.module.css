@@ -1,0 +1,41 @@
+.row {
+    display: flex;
+    align-items: center;
+    min-height: var(--setting-row-height, 2rem);
+    padding: 0.1rem 0;
+    gap: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+.row:last-child {
+    border-bottom: none;
+}
+
+.labelColumn {
+    flex: 0 0 var(--settings-column-width, 150px);
+    min-width: calc(var(--settings-column-min-width, 100px) * 1px);
+    max-width: calc(var(--settings-column-max-width, 300px) * 1px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.valueColumn {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+}
+
+.resizerVertical {
+  width: 2px;
+  cursor: col-resize;
+  background: transparent;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.resizerVertical:hover .resizerHorizontal:hover {
+  background: rgba(0, 0, 0, 0.1);
+}

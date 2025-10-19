@@ -7,6 +7,8 @@ export interface DropdownTextInputProps<T = string> {
     filterFunction?: (inputValue: string, suggestions?: T[]) => T[];
     getDisplayValue?: (item: T) => string;
     disabled?: boolean;
+    allowCustom?: boolean;
+    editable?: boolean;
     error?: string;
     className?: string;
 }

@@ -25,7 +25,7 @@ export default function SongOverviewCard({
         onSelect(song.id)
     }, [song.id, onSelect]);
 
-    const displayName = song.title || "Untitled";
+    const displayName = song.title;
     const languagesText = song.languages.join(", ");
     const orientationText = song.orientation === 'stacked' ? "Stacked" : "Side by side";
 

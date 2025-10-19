@@ -32,20 +32,20 @@ export default function SongInput({
 
             <div className={styles.lyricsContainer}>
                 <LyricsInput 
-                    language={song.language1}
+                    language={song.lang1 || ""}
                     onLanguageChange={onLanguage1Change}
                     languageSuggestions={["ABC", "BCD"]}
-                    lyrics={song.lyrics1}
+                    lyrics={song.text1 || ""}
                     onLyricsChange={onLyrics1Change}
                     onSave={() => {}}
                     onReset={() => {}}
                     onUploadFile={() => {}}/>
 
                 <LyricsInput 
-                    language={song.language2}
+                    language={song.lang2 || ""}
                     onLanguageChange={onLanguage2Change}
                     languageSuggestions={["ABC", "BCD"]}
-                    lyrics={song.lyrics2 || ""}
+                    lyrics={song.text2 || ""}
                     onLyricsChange={onLyrics2Change}
                     onSave={() => {}}
                     onReset={() => {}}

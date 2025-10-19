@@ -1,38 +1,36 @@
+import { DEFAULT_SONG_SETTINGS } from "@rock-and-scroll/shared/defaults/defaultSettings";
+import { Song, SongSettings } from "@rock-and-scroll/shared/types/settings";
 
-export interface Song {
-    id: string;
-    title: string,
-    language1: string;
-    language2?: string;
-    lyrics1: string;
-    lyrics2?: string;
-    orientation: 'stacked' | 'sideBySide';
-}
-
-export type SongOverview = Pick<Song, "id" | "title" | "orientation"> & {
-    languages: string[]
+export type SongOverview = {
+    id: string,
+    title: string;
+    languages: string[];
+    orientation: SongSettings["orientation"];
 }
 
 export const getSongOverview = (song: Song): SongOverview => {
-    const languages = [song.language1];
-    if(song.language2) {
-        languages.push(song.language2);
-    }
+    const languages = [];
+    if(song.lang1)
+        languages.push(song.lang1);
+    if(song.lang2) 
+        languages.push(song.lang2);
 
     return {
         id: song.id,
-        title: song.title,
+        title: song.title || "Untitled",
         languages,
-        orientation: song.orientation,
+        orientation: song.settings.orientation,
     }
 }
 
 export const getBlankSong = (): Song => {
     return {
-    id: `song_${crypto.randomUUID()}`,
-    title: "",
-    language1: "",
-    lyrics1: "",
-    orientation: "sideBySide"
-}
+        id: `song_${crypto.randomUUID()}`,
+        title: "",
+        lang1: null,
+        text1: null,
+        lang2: null,
+        text2: null,
+        settings: DEFAULT_SONG_SETTINGS
+    }
 }

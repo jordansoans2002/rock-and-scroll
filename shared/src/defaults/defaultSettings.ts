@@ -1,11 +1,11 @@
-import { Background, Padding, PresentationSettings, Separation, SongSettings, TextStyle } from "../types/settings";
+import { Background, HORIZONTAL_ALIGNMENTS, ORIENTATIONS, Padding, PresentationSettings, Separation, SEPARATION_MODES, SLIDE_RATIOS, SongSettings, TextStyle, UNITS, VERTICAL_ALIGNMENTS } from "../types/settings";
 
 export const DEFAULT_TEXT_STYLE: TextStyle = {
   fontFamily: "Arial",
   fontSize: 32,
   fontColor: "#000000",
-  align: "center",
-  vAlign: "middle"
+  align: HORIZONTAL_ALIGNMENTS.center,
+  vAlign: VERTICAL_ALIGNMENTS.middle
 };
 
 export const DEFAULT_BACKGROUND: Background = {
@@ -21,14 +21,16 @@ export const DEFAULT_PADDING: Padding = {
 };
 
 export const DEFAULT_SEPARATOR: Separation = {
+    separationMode: SEPARATION_MODES.blankLines,
+    blankLines: 2,
+    lines: null,
     symbol: "\r\n\r\n\r\n",
-    lines: null
 };
 
 export const DEFAULT_SONG_SETTINGS: SongSettings = {
-    separation: DEFAULT_SEPARATOR,
-    orientation: "sideBySide",
+    orientation: ORIENTATIONS.sideBySide,
     stanzas: [],
+    separation: DEFAULT_SEPARATOR,
     padding: DEFAULT_PADDING,
     text1Style: DEFAULT_TEXT_STYLE,
     text2Style: DEFAULT_TEXT_STYLE,
@@ -36,7 +38,7 @@ export const DEFAULT_SONG_SETTINGS: SongSettings = {
 };
 
 export const DEFAULT_PRESENTATION_SETTINGS: PresentationSettings = {
-    slideRatio: "16x9",
-    unit: "px",
+    slideRatio: SLIDE_RATIOS._16x9,
+    unit: UNITS.px,
     titleStyle: DEFAULT_TEXT_STYLE
 } 

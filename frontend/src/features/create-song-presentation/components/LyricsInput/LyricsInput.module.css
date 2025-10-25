@@ -27,4 +27,9 @@
 
 .lyricsInput::placeholder {
     color: #9ca3af;
-} 
+}
+
+.dropdownInput {
+    width: 100%;
+    height: 2rem;
+}

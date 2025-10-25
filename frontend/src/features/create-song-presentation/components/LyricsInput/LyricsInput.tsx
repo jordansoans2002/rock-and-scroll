@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import DropdownTextInput from "../DropdownTextInput/DropdownTextInput";
 
-import styles from "./LyricsInput.module.css"
 import type { LyricsInputProps } from "./LyricsInput.types";
-import type { ButtonConfig } from "../ButtonBar/ButtonBar.types";
-import ButtonBar from "../ButtonBar/ButtonBar";
+import ButtonBar, { ButtonConfig } from "../ButtonBar/ButtonBar";
+
+import styles from "./LyricsInput.module.css"
 
 export default function LyricsInput({
     language = "",
@@ -26,7 +26,13 @@ export default function LyricsInput({
         [onLyricsChange]
     )
 
-    const buttons: ButtonConfig[] = [
+    const startButtons: ButtonConfig[] = [
+        {
+            label: "Upload",
+            onClick: onUploadFile
+        }
+    ]
+    const endButtons: ButtonConfig[] = [
         {
             label: "Save",
             onClick: onSave
@@ -35,10 +41,6 @@ export default function LyricsInput({
             label: "Reset",
             onClick: onReset
         },
-        {
-            label: "Upload",
-            onClick: onUploadFile
-        }
     ]
 
     return(
@@ -47,7 +49,8 @@ export default function LyricsInput({
                 placeholder="Language"
                 suggestions={languageSuggestions}
                 value={language}
-                onChange={onLanguageChange} />
+                onChange={onLanguageChange}
+                className={styles.dropdownInput} />
             
             <textarea 
                 value={lyrics}
@@ -55,7 +58,7 @@ export default function LyricsInput({
                 className={styles.lyricsInput} />
 
             <div className={styles.buttonSection}>
-                <ButtonBar buttons={buttons} />
+                <ButtonBar orientation="horizontal" startGroup={startButtons} endGroup={endButtons} />
             </div>
         </div>
     )

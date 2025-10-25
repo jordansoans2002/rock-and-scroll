@@ -1,8 +1,21 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react"
-import type { DropdownTextInputProps } from "./DropdownTextInput.types";
 
 import styles from "./DropdownTextInput.module.css"
-import baseStyles from "../SettingsPanel/SettingsPanel.module.css"
+
+interface DropdownTextInputProps<T = string> {
+    placeholder? : string;
+    suggestions: T[];
+    value: string;
+    onChange: (value: string) => void;
+    onSelect?: (value: T) => void;
+    filterFunction?: (inputValue: string, suggestions?: T[]) => T[];
+    getDisplayValue?: (item: T) => string;
+    disabled?: boolean;
+    allowCustom?: boolean;
+    editable?: boolean;
+    error?: string;
+    className?: string;
+}
 
 export default function DropdownTextInput<T = string>({
     placeholder = "Type or select...",
@@ -25,7 +38,8 @@ export default function DropdownTextInput<T = string>({
 
     const defaultFilterFunction = useCallback(
         (inputValue: string, items: T[]): T[] => {
-            if(!inputValue.trim()) return items;
+            console.log(inputValue);
+            if(!inputValue && !inputValue.trim()) return items;
             const lowerInput = inputValue.toLowerCase();
             return items.filter(
                 (item) => getDisplayValue(item).toLowerCase().includes(lowerInput)
@@ -133,7 +147,6 @@ export default function DropdownTextInput<T = string>({
     // Dynamic classes for input based on state
     const inputClasses = [
         styles.input,
-        baseStyles.baseSetting,
         error && styles.inputError,
         !editable && styles.dropdownSelect,
         disabled && styles.inputDisabled,
@@ -178,7 +191,7 @@ export default function DropdownTextInput<T = string>({
                     readOnly={ !editable }
                 />
 
-                <div
+                {suggestions.length>0 && <div
                     onClick={() => setIsOpen(!isOpen)} 
                     className={styles.arrow}>
                     
@@ -194,16 +207,16 @@ export default function DropdownTextInput<T = string>({
                                 strokeWidth={2}
                                 d="M19 9l-7 7-7-7"/>
                     </svg>
-                </div>
+                </div>}
             </div>
 
             {error && <p className={styles.error}>{error}</p>}
 
-            {showSuggestions && (
+            {suggestions.length>0 && showSuggestions && (
                 <ul
                     id="dropdownTextInput-listbox"
                     role="listbox"
-                    className={styles.dropdown}>
+                    className={`${styles.dropdown}`}>
                         {filteredSuggestions.map((suggestion, index) => {
                             const displayValue = getDisplayValue(suggestion);
                             return (
@@ -221,11 +234,11 @@ export default function DropdownTextInput<T = string>({
                 </ul>
             )}
 
-            {showNoResults && (
+            {/* {showNoResults && (
                 <div className={styles.noResults}>
                     No suggestions found
                 </div>
-            )}
+            )} */}
         </div>
     )
 }

@@ -1,27 +1,29 @@
 import styles from "./NumberInput.module.css"
 import baseStyles from "../SettingsPanel/SettingsPanel.module.css"
-import { NumberSetting } from "../../types/settings"
+import { SETTINGS_METADATA } from "@rock-and-scroll/shared/types/settingsMetadata"
 
 interface NumberInputProps {
-    setting: NumberSetting,
+    setting: SETTINGS_METADATA,
+    value: number,
     onChange: (value: number) => void
 }
 
 export default function NumberInput({
     setting,
+    value,
     onChange,
 }: NumberInputProps) {
     return(
         <div className={styles.numberSetting}>
             <input
                 type="number"
-                value={setting.value}
+                value={value}
                 onChange={() => {}}
                 onBlur={() => {}}
                 min={setting.min}
                 max={setting.max}
                 step={setting.step || 1}
-                className={`${styles.input} ${baseStyles.baseSetting}`} />
+                className={`${styles.input} `} />
 
             <div className={styles.spinners}>
                 <button

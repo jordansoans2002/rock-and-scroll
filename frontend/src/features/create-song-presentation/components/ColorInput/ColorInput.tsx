@@ -2,19 +2,21 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import styles from "./ColorInput.module.css"
 import baseStyles from "../SettingsPanel/SettingsPanel.module.css"
-import { ColorSetting } from "../../types/settings";
+import { SETTINGS_METADATA } from "@rock-and-scroll/shared/types/settingsMetadata";
 
 interface ColorInputProps {
-  setting: ColorSetting;
+  setting: SETTINGS_METADATA;
+  value: string,
   onChange: (value: string) => void;
 }
 
 export default function ColorInput({
     setting,
+    value,
     onChange,
 }: ColorInputProps) {
     const [showPicker, setShowPicker] = useState(false);
-  const [inputValue, setInputValue] = useState(setting.value);
+  const [inputValue, setInputValue] = useState(value);
   const pickerRef = useRef<HTMLDivElement>(null);
   const colorInputRef = useRef<HTMLInputElement>(null);
 
@@ -56,9 +58,9 @@ export default function ColorInput({
       onChange(inputValue);
     } else {
       // Reset to previous valid value
-      setInputValue(setting.value);
+      setInputValue(value);
     }
-  }, [inputValue, setting.value, onChange]);
+  }, [inputValue, value, onChange]);
 
   const handleSwatchClick = useCallback(() => {
     setShowPicker((prev) => !prev);
@@ -68,8 +70,8 @@ export default function ColorInput({
 
   // Sync internal state when external value changes
   useEffect(() => {
-    setInputValue(setting.value);
-  }, [setting.value]);
+    setInputValue(value);
+  }, [value]);
 
   return (
     <div className={styles.colorSetting}>
@@ -80,7 +82,7 @@ export default function ColorInput({
         onChange={handleInputChange}
         onBlur={handleInputBlur}
         placeholder="#000000"
-        className={`${styles.input} ${baseStyles.baseSetting}`}
+        className={`${styles.input} `}
         maxLength={7}
       />
       
@@ -88,7 +90,7 @@ export default function ColorInput({
       <button
         type="button"
         className={styles.swatch}
-        style={{ backgroundColor: setting.value }}
+        style={{ backgroundColor: value }}
         onClick={handleSwatchClick}
         aria-label="Select color">
         <span className={styles.swatchBorder} />
@@ -100,7 +102,7 @@ export default function ColorInput({
           <input
             ref={colorInputRef}
             type="color"
-            value={setting.value}
+            value={value}
             onChange={handleColorChange}
             className={styles.colorInput}
           />

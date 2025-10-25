@@ -1,8 +1,74 @@
 .buttonBar {
-    display: flex; /* Align buttons horizontally */
-    gap: 0.75rem; /* Space between buttons (12px) */
-    align-items: center; /* Vertically center buttons */
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+  display: flex; /* Align buttons horizontally */
+  align-items: center; /* Vertically center buttons */
+  gap: 0.5rem;
+}
+
+.verticalButtonBar {
+  flex-direction: column;
+  height: 100%;
+  padding-block: 0.5rem;
+}
+
+.horizontalButtonBar {
+  flex-direction: row;
+  width: 100%;
+  padding-inline: 0.5rem;
+}
+
+.group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* START group: take available space in horizontal mode so end group sits at right */
+.startGroupHorizontal {
+  flex: 1 1 auto;
+  justify-content: flex-start;
+}
+
+/* If you want start group stacked vertically, make it column via an extra prop/class */
+.startGroupVertical {
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* END group: natural size; for horizontal it's right-aligned because startGroup expands.
+   For vertical, we'll push it to the bottom using margin-top:auto. */
+.endGroup {
+  flex: 0 0 auto;
+}
+
+/* vertical-specific behavior: push endGroup to bottom */
+.vertical .endGroup {
+  margin-top: auto;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+}
+
+.verticalButton {
+  writing-mode: vertical-rl;   /* text flows vertically */
+  text-orientation: mixed;     /* keeps letters upright */
+  height: auto;
+  min-height: 3rem;            /* ensure enough space */
+}
+
+.icon {
+  display: inline-flex;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.label {
+  white-space: nowrap;
 }
 
 /* Without padding - buttons would be too small to click comfortably */
@@ -26,47 +92,3 @@
   transform: translateY(1px); /* Subtle press effect */
 }
 /* Without this - no tactile feedback on click */
-
-/* ==================================================================
-   PRIMARY BUTTON - Main action (e.g., Save)
-   ================================================================== */
-.buttonPrimary {
-  background-color: #3b82f6; /* Blue background */
-  color: #ffffff; /* White text */
-  border-color: #3b82f6; /* Blue border */
-}
-/* Without background-color - button would be invisible/unclear */
-
-.buttonPrimary:hover:not(:disabled) {
-  background-color: #2563eb; /* Darker blue on hover */
-  border-color: #2563eb;
-}
-/* Without hover state - no feedback on interaction */
-
-/* ==================================================================
-   SECONDARY BUTTON - Secondary actions (e.g., Reset)
-   ================================================================== */
-.buttonSecondary {
-  background-color: #ffffff; /* White background */
-  color: #374151; /* Dark gray text */
-  border-color: #d1d5db; /* Light gray border */
-}
-
-.buttonSecondary:hover:not(:disabled) {
-  background-color: #f9fafb; /* Very light gray on hover */
-  border-color: #9ca3af; /* Darker gray border */
-}
-
-/* ==================================================================
-   DANGER BUTTON - Destructive actions (e.g., Delete)
-   ================================================================== */
-.buttonDanger {
-  background-color: #ef4444; /* Red background */
-  color: #ffffff; /* White text */
-  border-color: #ef4444; /* Red border */
-}
-
-.buttonDanger:hover:not(:disabled) {
-  background-color: #dc2626; /* Darker red on hover */
-  border-color: #dc2626;
-}

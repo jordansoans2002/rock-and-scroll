@@ -1,10 +1,10 @@
 import { useState, useCallback } from "react";
 import { Song } from "@rock-and-scroll/shared/types/settings";
-import { getBlankSong, SongOverview } from "../types/song";
+import { getBlankSong, SongOverview } from "../../types/song";
 
 
 export const useSongEditor = () => {
-    const [selectedSong, setSelectedSong] = useState<Song>(getBlankSong);
+    const [selectedSong, setSelectedSong] = useState<Song>(getBlankSong); // TODO pass users default song settings
     const [songs, setSongs] = useState<Song[]>([selectedSong]);
 
     const updateSongField = useCallback((field: keyof Song, value: any, updateOverview: boolean = false) => {
@@ -62,7 +62,7 @@ export const useSongEditor = () => {
         
             if(selectedSong.id === id) {
                 if(updatedSongs.length === 0) {
-                    const song = getBlankSong()
+                    const song = getBlankSong() // TODO use users default settings
                     updatedSongs.push(song);
                     setSelectedSong(song);
                 } else if(deleteIndex === updatedSongs.length) {

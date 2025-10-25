@@ -1,19 +1,22 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { PAGE_VARS } from "../../constants/css";
-import { ResizeConfig } from "../../hooks/useResizer";
+import { ResizeConfig, useResizer } from "../../hooks/useResizer";
 
 const LAYOUT_DEFAULTS = {
-    songList: { width: 300, min: 300, max: 500 },
-    settings: { width: 200, min: 200, max: 300 },
+    songList: { width: 300, min: 300, max: 350 },
+    settings: { width: 250, min: 250, max: 300 },
     preview: { height: 200, min: 100, max: 400 },
 } as const;
 
 export const useResizablePanels = () => {
+    const containerRef = useRef<HTMLDivElement>(null);
     const [songListWidth, setSongListWidth] = useState<number>(LAYOUT_DEFAULTS.songList.width);
     const [settingsWidth, setSettingsWidth] = useState<number>(LAYOUT_DEFAULTS.settings.width);
     const [previewHeight, setPreviewHeight] = useState<number>(LAYOUT_DEFAULTS.preview.height);
+    const { attachResize } = useResizer(containerRef);
+    
 
-    const pageStyles = useMemo(() => ({
+    const stylesWidth = useMemo(() => ({
         [PAGE_VARS.SONG_LIST_WIDTH]: `${songListWidth}px`,
         [PAGE_VARS.SETTINGS_WIDTH]: `${settingsWidth}px`,
         [PAGE_VARS.PREVIEW_HEIGHT]: `${previewHeight}px`,
@@ -30,34 +33,51 @@ export const useResizablePanels = () => {
         [songListWidth, settingsWidth, previewHeight]
     );
 
-    const resizeConfigs = {
-        songList: {
+    const songListResizeCfg: ResizeConfig = useMemo(() => (
+        {
             minSize: LAYOUT_DEFAULTS.songList.min,
             maxSize: LAYOUT_DEFAULTS.songList.max,
             axis: "x",
             cssVarName: PAGE_VARS.SONG_LIST_WIDTH,
             commit: (v) => setSongListWidth(v)
-        } as ResizeConfig,
+        }
+    ), []); 
 
-        settings: {
+    const settingsResizeCfg: ResizeConfig = useMemo(() =>(
+        {
             minSize: LAYOUT_DEFAULTS.settings.min,
             maxSize: LAYOUT_DEFAULTS.settings.max,
             axis: "-x",
             cssVarName: PAGE_VARS.SETTINGS_WIDTH,
             commit: (v) => setSettingsWidth(v)
-        } as ResizeConfig,
+        }
+    ), []);
 
-        preview: {
+    const previewResizeCfg: ResizeConfig = useMemo(() => (
+        {
             minSize: LAYOUT_DEFAULTS.preview.min,
             maxSize: LAYOUT_DEFAULTS.preview.max,
             axis: "-y",
             cssVarName: PAGE_VARS.PREVIEW_HEIGHT,
             commit: (v) => setPreviewHeight(v)
-        } as ResizeConfig
-    }
+        }
+    ), []);
+
+    const resizeSongList = useCallback((ev: React.PointerEvent) => {
+        attachResize(songListResizeCfg)(ev);
+    }, [attachResize, songListResizeCfg]);
+    const resizeSettings = useCallback((ev: React.PointerEvent) => {
+        attachResize(settingsResizeCfg)(ev);
+    }, [attachResize, settingsResizeCfg]);
+    const resizePreview = useCallback((ev: React.PointerEvent) => {
+        attachResize(previewResizeCfg)(ev);
+    }, [attachResize, previewResizeCfg]);
 
     return {
-        pageStyles,
-        resizeConfigs
+        containerRef,
+        stylesWidth,
+        resizeSongList,
+        resizeSettings,
+        resizePreview,
     };
 }

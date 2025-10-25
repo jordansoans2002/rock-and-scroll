@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.topLevelLabel {
+  font-size: calc(var(--setting-font-size) * 1.2);
+  font-weight: 600;
+  color: '#333';
+}
+
+.nestedSettings {
+  padding-left: 0.25rem;
+}
+
+.topLevelSettings {
+  margin-top: 0;
+}

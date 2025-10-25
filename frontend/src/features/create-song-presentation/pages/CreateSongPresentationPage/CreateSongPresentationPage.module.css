@@ -1,14 +1,20 @@
 .createSongPresentation {
   display: flex;
-  flex-direction: column;
   height: 100dvh;
   width: 100vw;
   overflow: hidden;
 }
 
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .mainRow {
   display: flex;
   flex: 1;
+  overflow: hidden;
 }
 
 .songList {
@@ -33,7 +39,7 @@
   max-width: calc(var(--settings-max-width) * 1px);
   border-left: 1px solid #ddd;
   background: #f9f9f9;
-  overflow: auto;
+  overflow-y: scroll;
 }
 
 

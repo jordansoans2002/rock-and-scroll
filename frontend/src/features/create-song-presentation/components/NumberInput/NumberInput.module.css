@@ -4,11 +4,13 @@
     display: flex;
     position: relative;
     width: 100%;
-    height: var(--setting-height)
-}
-
-.input {
+    height: 100%;
+  }
+  
+  .input {
+    height: 100%;
     width: 100%;
+    padding: 0 0.5rem;
     padding-right: 2rem;
 }
 
@@ -29,8 +31,11 @@
     right: 0;
     top: 0;
     bottom: 0;
+    width: 1.75rem;
+
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     border-left: 1px solid var(--setting-border-color);
 }
 /* Without position: absolute - spinners would push input */
@@ -40,11 +45,10 @@
    SPINNER BUTTON - Individual up/down button
    ================================================================== */
 .spinnerButton {
-  flex: 1;
+  flex: 0 0 48%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.5rem;
   padding: 0;
   border: none;
   background-color: #ffffff;

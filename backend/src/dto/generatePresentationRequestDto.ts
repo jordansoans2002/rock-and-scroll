@@ -1,12 +1,18 @@
 import { z } from "zod";
-import type {
-    Background,
-    GeneratePresentationRequest,
-    Padding,
-    Separation,
-    Song,
-    TextStyle
+import {
+    ORIENTATIONS,
+    SEPARATION_MODES,
+    SLIDE_RATIOS,
+    UNITS,
+    type Background,
+    type Padding,
+    type Separation,
+    type SeparationMode,
+    type Song,
+    type TextStyle
 } from "@rock-and-scroll/shared/types/settings"
+
+import { type CreatePresentationRequest } from "@rock-and-scroll/shared/types/api"
 
 import {
     DEFAULT_BACKGROUND,
@@ -20,7 +26,7 @@ import {
 // Style schema
 const TextStyleSchema = z.object({
     fontFamily: z.string().default(DEFAULT_TEXT_STYLE.fontFamily),
-    fontSize: z.number().positive("Font size my be greater than 0").default(DEFAULT_TEXT_STYLE.fontSize),
+    fontSize: z.number().positive("Font size must be greater than 0").default(DEFAULT_TEXT_STYLE.fontSize),
     fontColor: z.string().regex(/^#[0-9A-Fa-f]{6}$/, "Color must be in hex format").default(DEFAULT_TEXT_STYLE.fontColor),
     align: z.enum(["left", "center", "right", "justify"]).default(DEFAULT_TEXT_STYLE.align),
     vAlign: z.enum(["top", "middle", "bottom"]).default(DEFAULT_TEXT_STYLE.vAlign)
@@ -41,8 +47,18 @@ const PaddingSchema = z.object({
 }) satisfies z.ZodType<Padding>;
 
 
+const SeparationModeSchema = z.enum([
+    SEPARATION_MODES.blankLines,
+    SEPARATION_MODES.linesPerSlide,
+    SEPARATION_MODES.symbol,
+    SEPARATION_MODES.blankLines_linesPerSlide,
+    SEPARATION_MODES.symbol_linesPerSlide,
+]) satisfies z.ZodType<SeparationMode>;
+
 // Separation schema
 const SeparationSchema = z.object({
+    separationMode: SeparationModeSchema,
+    blankLines: z.number().int().positive().nullable().optional(),
     symbol: z.string().nullable().optional(),
     lines: z.number().int().positive().nullable().optional()
 }).transform((data) => {
@@ -57,7 +73,7 @@ const SeparationSchema = z.object({
 // Song settings schema
 const SongSettingsSchema = z.object({
     separation: SeparationSchema.default(DEFAULT_SEPARATOR),
-    orientation: z.enum(["stacked", "sideBySide"]).default("sideBySide"),
+    orientation: z.enum([ORIENTATIONS.stacked, ORIENTATIONS.sideBySide]).default(ORIENTATIONS.sideBySide),
     stanzas: z.array(z.number().int().positive()).default([]),
     padding: PaddingSchema.default(DEFAULT_PADDING),
     text1Style: TextStyleSchema.default(DEFAULT_TEXT_STYLE),
@@ -67,20 +83,21 @@ const SongSettingsSchema = z.object({
 
 // Song schema
 export const SongSchema = z.object({
+    id: z.string(),
     title: z.string().default(""),
-    text: z.object({
-      text1: z.string(),
-      text2: z.string().nullable()
-    }),
+    lang1: z.string().nullable(),
+    text1: z.string().nullable(),
+    lang2: z.string().nullable(),
+    text2: z.string().nullable(),
     settings: SongSettingsSchema.default(DEFAULT_SONG_SETTINGS)
 }) satisfies z.ZodType<Song>;
 
 // Root request schema
-export const GeneratePresentationRequestSchema = z.object({
-    settings: z.object({
-      slideRatio: z.enum(["16x9", "4x3"]).default("16x9"),
-      unit: z.enum(["px", "in", "cm"]).default("in"),
-      titleStyle: TextStyleSchema.default(DEFAULT_TEXT_STYLE)
+export const CreatePresentationRequestSchema = z.object({
+    presentationSettings: z.object({
+      slideRatio: z.enum([SLIDE_RATIOS._16x9, SLIDE_RATIOS._4x3]).default(DEFAULT_PRESENTATION_SETTINGS.slideRatio),
+      unit: z.enum([UNITS.px, UNITS.cm, UNITS.in]).default(DEFAULT_PRESENTATION_SETTINGS.unit),
+      titleStyle: TextStyleSchema.default(DEFAULT_PRESENTATION_SETTINGS.titleStyle)
     }).default(DEFAULT_PRESENTATION_SETTINGS),
     songs: z.array(SongSchema).min(1, "At least one song is required")
-}) satisfies z.ZodType<GeneratePresentationRequest>;
+}) satisfies z.ZodType<CreatePresentationRequest>;

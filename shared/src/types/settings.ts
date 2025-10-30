@@ -50,7 +50,7 @@ export type SeparationMode = typeof SEPARATION_MODES[keyof typeof SEPARATION_MOD
 
 export interface Separation {
     separationMode: SeparationMode,
-    blankLines?: number;
+    blankLines?: number | null;
     lines?: number | null;
     symbol?: string | null;
 }
@@ -92,9 +92,4 @@ export interface Song {
     lang2: string | null;
     text2: string | null;
     settings: SongSettings;
-}
-
-export interface GeneratePresentationRequest {
-    settings: PresentationSettings;
-    songs: Song[];
 }

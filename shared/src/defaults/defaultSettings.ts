@@ -8,6 +8,14 @@ export const DEFAULT_TEXT_STYLE: TextStyle = {
   vAlign: VERTICAL_ALIGNMENTS.middle
 };
 
+export const DEFAULT_TITLE_TEXT_STYLE: TextStyle = {
+  fontFamily: "Arial",
+  fontSize: 64,
+  fontColor: "#000000",
+  align: HORIZONTAL_ALIGNMENTS.center,
+  vAlign: VERTICAL_ALIGNMENTS.middle
+};
+
 export const DEFAULT_BACKGROUND: Background = {
   color: "#FFFFFF",
 };
@@ -23,8 +31,8 @@ export const DEFAULT_PADDING: Padding = {
 export const DEFAULT_SEPARATOR: Separation = {
     separationMode: SEPARATION_MODES.blankLines,
     blankLines: 2,
-    lines: null,
-    symbol: "\r\n\r\n\r\n",
+    lines: 1,
+    symbol: "%",
 };
 
 export const DEFAULT_SONG_SETTINGS: SongSettings = {
@@ -40,5 +48,5 @@ export const DEFAULT_SONG_SETTINGS: SongSettings = {
 export const DEFAULT_PRESENTATION_SETTINGS: PresentationSettings = {
     slideRatio: SLIDE_RATIOS._16x9,
     unit: UNITS.px,
-    titleStyle: DEFAULT_TEXT_STYLE
+    titleStyle: DEFAULT_TITLE_TEXT_STYLE
 } 

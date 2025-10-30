@@ -1,9 +1,9 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { GeneratePresentationRequestSchema } from "../dto/generatePresentationRequestDto";
+import { CreatePresentationRequestSchema } from "../dto/generatePresentationRequestDto";
 import { MockGenerator } from "../services/presentationGenerator/MockPresentationGenerator";
 import { GeneratePresentationUseCase } from "../usecases/generatePresentationUseCase";
 import { RealPresentationGenerator } from "../services/presentationGenerator/RealPresentationGenerator";
-import { GeneratePresentationRequest } from "@rock-and-scroll/shared/types/settings";
+import { CreatePresentationRequest } from "@rock-and-scroll/shared/types/api";
 
 
 export async function generatePresentationController(
@@ -11,7 +11,7 @@ export async function generatePresentationController(
   reply: FastifyReply
 ) {
   try {
-    const payload: GeneratePresentationRequest = GeneratePresentationRequestSchema.parse(request.body)
+    const payload: CreatePresentationRequest = CreatePresentationRequestSchema.parse(request.body)
 
     const presentationGenerator = new RealPresentationGenerator();
     const lyricsPresentationUseCase = new GeneratePresentationUseCase(presentationGenerator);

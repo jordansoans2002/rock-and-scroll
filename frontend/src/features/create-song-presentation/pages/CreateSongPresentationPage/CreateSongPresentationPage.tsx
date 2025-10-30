@@ -1,54 +1,60 @@
-import SlidePreviewTray from "../../components/SlidePreviewTray/SlidePreviewTray";
-import SongInput from "../../components/SongInput/SongInput";
-import SongList from "../../components/SongList/SongList";
+import SlidePreviewTray from "../../components/SongPreviewComponents/SlidePreviewTray/SlidePreviewTray";
+import SongInput from "../../components/SongEditorComponents/SongInput/SongInput";
+import SongList from "../../components/SongListComponents/SongList/SongList";
 
 import styles from "./CreateSongPresentationPage.module.css";
-import { getSongOverview } from "../../types/song";
 import ButtonBar from "../../components/ButtonBar/ButtonBar";
 import type { ButtonConfig } from "../../components/ButtonBar/ButtonBar";
-import { useSongEditor } from "./useSongEditor";
-import { useResizablePanels } from "./useResizablePanels";
-import { useMemo, useState } from "react";
-import SettingsPanel from "../../components/SettingsPanel/SettingsPanel";
-import { PRESENTATION_SETTINGS_METADATA } from "@rock-and-scroll/shared/types/settingsMetadata";
-import { DEFAULT_PRESENTATION_SETTINGS, DEFAULT_SONG_SETTINGS } from "@rock-and-scroll/shared/defaults/defaultSettings";
+import { useState } from "react";
+import SettingsPanel from "../../components/SettingsComponents/SettingsPanel/SettingsPanel";
+import { useSongPresentationState } from "./useCreateSongPresentationState";
+
 
 
 
 export default function CreateSongPresentationPage() {
     const {
-        selectedSong,
         songs,
+        selectedSongId,
+        selectedSong,
+        songOverviews,
+        presentationSettings,
+        defaultSongSettings,
+
         handleTitleUpdate,
         handleLanguage1Update,
         handleLanguage2Update,
         handleLyrics1Update,
         handleLyrics2Update,
+
         handleSelectSong,
         handleAddSong,
         handleDeleteSong,
         handleReorderSongs,
-    } = useSongEditor();
 
-    const {
+        updatePresentationSettings,
+        updateDefaultSongSettings,
+
+        selectedSongSettings,
+        updateSelectedSongSettings,
+
+        handleCreatePresentation,
+        isCreating,
+        creationError,
+        clearCreationError,
+
+        activeView,
+        toggleActiveView,
+        minimizePanel,
+
         containerRef,
         stylesWidth,
         resizeSongList,
         resizeSettings,
-        resizePreview
-    } = useResizablePanels();
+        resizePreview,
+    } = useSongPresentationState();
+       
 
-    const songOverviews = useMemo(() => 
-        songs.map(getSongOverview),
-        [songs]
-    );
-
-    const selectedSongSettings = useMemo(() => 
-        selectedSong.settings,
-        [selectedSong]
-    );
-
-    const [activeView, setActiveView] = useState<'presentation' | 'song' | null>(null); // TODO export as type
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
     const buttons: ButtonConfig[] = [
@@ -60,32 +66,18 @@ export default function CreateSongPresentationPage() {
         },
         {
             label: "Create Presentation",
-            onClick: () => {
-                console.log(songs);
-            }
+            onClick: handleCreatePresentation
         },
     ]
 
     const settingButtons: ButtonConfig[] = [
         {
             label: "Presentation Settings",
-            onClick: () => {
-                if (activeView !== "presentation") {
-                    setActiveView("presentation");
-                } else {
-                    setActiveView(null);
-                }
-            }
+            onClick: () => { toggleActiveView("presentation") }
         },
         {
             label: "Song Settings",
-            onClick: () => {
-                if (activeView !== "song") {
-                    setActiveView("song");
-                } else {
-                    setActiveView(null);
-                }
-            }
+            onClick: () => { toggleActiveView("song") }
         },
     ]
 
@@ -122,10 +114,17 @@ export default function CreateSongPresentationPage() {
                             <div className={styles.resizerVertical} onPointerDown={resizeSettings} />
                             <aside className={styles.settings}>
                                 <SettingsPanel 
-                                    activeView={activeView}
-                                    minimizePanel={()=>setActiveView(null)}
-                                    songSettings={selectedSongSettings}
-                                    onUpdateSongSettings={(songSettings) => selectedSong.settings = songSettings}/>
+                                    activeView={ activeView }
+                                    minimizePanel={ minimizePanel }
+
+                                    presentationSettings={presentationSettings}
+                                    onUpdatePresentationSettings={updatePresentationSettings}
+
+                                    defaultSongSettings={defaultSongSettings}
+                                    onUpdateDefaultSongSettings={updateDefaultSongSettings}
+                                    
+                                    selectedSongSettings={selectedSongSettings}
+                                    onUpdateSongSettings={ updateSelectedSongSettings }/>
                             </aside>
                     </> }
                 </div>

@@ -23,7 +23,7 @@ export const getSongOverview = (song: Song): SongOverview => {
     }
 }
 
-export const getBlankSong = (settings?: SongSettings): Song => {
+export const getBlankSong = (settings?: SongSettings): Song => {    
     return {
         id: `song_${crypto.randomUUID()}`,
         title: "",

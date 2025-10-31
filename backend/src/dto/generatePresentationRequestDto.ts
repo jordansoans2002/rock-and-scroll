@@ -1,9 +1,11 @@
 import { z } from "zod";
 import {
+    HORIZONTAL_ALIGNMENTS,
     ORIENTATIONS,
     SEPARATION_MODES,
     SLIDE_RATIOS,
     UNITS,
+    VERTICAL_ALIGNMENTS,
     type Background,
     type Padding,
     type Separation,
@@ -28,8 +30,8 @@ const TextStyleSchema = z.object({
     fontFamily: z.string().default(DEFAULT_TEXT_STYLE.fontFamily),
     fontSize: z.number().positive("Font size must be greater than 0").default(DEFAULT_TEXT_STYLE.fontSize),
     fontColor: z.string().regex(/^#[0-9A-Fa-f]{6}$/, "Color must be in hex format").default(DEFAULT_TEXT_STYLE.fontColor),
-    align: z.enum(["left", "center", "right", "justify"]).default(DEFAULT_TEXT_STYLE.align),
-    vAlign: z.enum(["top", "middle", "bottom"]).default(DEFAULT_TEXT_STYLE.vAlign)
+    align: z.enum([HORIZONTAL_ALIGNMENTS.center, HORIZONTAL_ALIGNMENTS.left, HORIZONTAL_ALIGNMENTS.right, HORIZONTAL_ALIGNMENTS.justify]).default(DEFAULT_TEXT_STYLE.align),
+    vAlign: z.enum([VERTICAL_ALIGNMENTS.middle, VERTICAL_ALIGNMENTS.top, VERTICAL_ALIGNMENTS.bottom]).default(DEFAULT_TEXT_STYLE.vAlign)
 }) satisfies z.ZodType<TextStyle>;
 
 // Background schema

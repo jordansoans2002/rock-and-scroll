@@ -22,8 +22,7 @@ export default function SettingsRenderer<T extends Record<string, any>>({
     const keys = Object.keys(settings) as Array<keyof T>;
 
     return (
-        <div className={styles.list}>
-            <div ref={containerRef} style={settingStyle}>
+        <div className={styles.list} ref={containerRef} style={settingStyle}>
             {keys.map((key) => {
                 const meta = metadata[key];
                 const value = settings[key];
@@ -84,7 +83,6 @@ export default function SettingsRenderer<T extends Record<string, any>>({
                         </div>
                 );
             })}
-            </div>
         </div>
     );
 }

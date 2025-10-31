@@ -1,11 +1,10 @@
-import SlidePreviewTray from "../../components/SongPreviewComponents/SlidePreviewTray/SlidePreviewTray";
+import PreviewTray from "../../components/SongPreviewComponents/PreviewTray/PreviewTray";
 import SongInput from "../../components/SongEditorComponents/SongInput/SongInput";
 import SongList from "../../components/SongListComponents/SongList/SongList";
 
 import styles from "./CreateSongPresentationPage.module.css";
 import ButtonBar from "../../components/ButtonBar/ButtonBar";
 import type { ButtonConfig } from "../../components/ButtonBar/ButtonBar";
-import { useState } from "react";
 import SettingsPanel from "../../components/SettingsComponents/SettingsPanel/SettingsPanel";
 import { useSongPresentationState } from "./useCreateSongPresentationState";
 
@@ -52,17 +51,18 @@ export default function CreateSongPresentationPage() {
         resizeSongList,
         resizeSettings,
         resizePreview,
+
+        isPreviewOpen,
+        togglePreview,
+        minimizePreview
     } = useSongPresentationState();
        
 
-    const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
     const buttons: ButtonConfig[] = [
         {
             label: "Show Preview",
-            onClick: () => {
-                setIsPreviewOpen(!isPreviewOpen);
-            }
+            onClick: togglePreview
         },
         {
             label: "Create Presentation",
@@ -131,12 +131,12 @@ export default function CreateSongPresentationPage() {
                 { isPreviewOpen && <>
                     <div className={styles.resizerHorizontal} onPointerDown={resizePreview} />
                     <aside className={styles.previewTray}>
-                        <SlidePreviewTray />
+                        <PreviewTray minimizePreview={minimizePreview} />
                     </aside>
                 </>}
                 
 
-                <footer>
+                <footer className={styles.footer}>
                     <ButtonBar orientation="horizontal" endGroup={buttons} />
                 </footer>
             </div>

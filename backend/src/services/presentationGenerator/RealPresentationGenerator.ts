@@ -47,7 +47,7 @@ export class RealPresentationGenerator implements IPresentationGenerator {
   renderLyricsSlide(
     slide: PptxGenJS.Slide,
     settings: SongSettings,
-    block: { text1: string; text2?: string | null },
+    block: { text1: string | null; text2?: string | null },
     presentationSettings: { titleStyle: TextStyle; unit: Unit; slideRatio: SlideRatio }
   ) {
     const unit: Unit = presentationSettings.unit;
@@ -71,19 +71,21 @@ export class RealPresentationGenerator implements IPresentationGenerator {
     if (orientation === "sideBySide") {
       const colWidthIn = (contentWidthIn - gap) / 2;
 
-      text1Style.fontSize = text1Style.fontSize ?? this.adaptiveFontSize(block.text1, text1Style.fontSize, block.text2? colWidthIn : contentWidthIn, contentHeightIn);
-      slide.addText(block.text1, {
-        x: marginLeftIn,
-        y: marginTopIn,
-        w: block.text2 ? colWidthIn : contentWidthIn,
-        h: contentHeightIn,
-        fontFace: text1Style.fontFamily,
-        fontSize: text1Style.fontSize,
-        color: text1Style.fontColor,
-        align: text1Style.align,
-        wrap: true,
-        valign: text1Style.vAlign
-      });
+      if(block.text1) {
+        text1Style.fontSize = text1Style.fontSize ?? this.adaptiveFontSize(block.text1, text1Style.fontSize, block.text2? colWidthIn : contentWidthIn, contentHeightIn);
+        slide.addText(block.text1, {
+          x: marginLeftIn,
+          y: marginTopIn,
+          w: block.text2 ? colWidthIn : contentWidthIn,
+          h: contentHeightIn,
+          fontFace: text1Style.fontFamily,
+          fontSize: text1Style.fontSize,
+          color: text1Style.fontColor,
+          align: text1Style.align,
+          wrap: true,
+          valign: text1Style.vAlign
+        });
+      }
 
       if (block.text2) {
         text2Style.fontSize = text2Style.fontSize ?? this.adaptiveFontSize(block.text2, text2Style.fontSize, colWidthIn, contentHeightIn);
@@ -103,19 +105,21 @@ export class RealPresentationGenerator implements IPresentationGenerator {
     } else {
       const rowHeightIn = (contentHeightIn - gap) / 2;
 
-      text1Style.fontSize = text1Style.fontSize ?? this.adaptiveFontSize(block.text1, text1Style.fontSize, contentWidthIn, block.text2 ? rowHeightIn : contentHeightIn);
-      slide.addText(block.text1, {
-        x: marginLeftIn,
-        y: marginTopIn,
-        w: contentWidthIn,
-        h: block.text2 ? rowHeightIn : contentHeightIn,
-        fontFace: text1Style.fontFamily,
-        fontSize: text1Style.fontSize,
-        color: text1Style.fontColor,
-        align: text1Style.align,
-        wrap: true,
-        valign: text1Style.vAlign
-      });
+      if(block.text1) {
+        text1Style.fontSize = text1Style.fontSize ?? this.adaptiveFontSize(block.text1, text1Style.fontSize, contentWidthIn, block.text2 ? rowHeightIn : contentHeightIn);
+        slide.addText(block.text1, {
+          x: marginLeftIn,
+          y: marginTopIn,
+          w: contentWidthIn,
+          h: block.text2 ? rowHeightIn : contentHeightIn,
+          fontFace: text1Style.fontFamily,
+          fontSize: text1Style.fontSize,
+          color: text1Style.fontColor,
+          align: text1Style.align,
+          wrap: true,
+          valign: text1Style.vAlign
+        });
+      }
 
       if (block.text2) {
         text2Style.fontSize = text2Style.fontSize ?? this.adaptiveFontSize(block.text2, text2Style.fontSize, contentWidthIn, rowHeightIn);

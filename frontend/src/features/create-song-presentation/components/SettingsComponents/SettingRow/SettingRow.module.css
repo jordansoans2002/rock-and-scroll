@@ -12,6 +12,7 @@
   width: 100%;
   gap: 0.2rem;
   padding: 0.15rem 0;
+  align-items: center;
 }
 .row:last-child {
     border-bottom: none;
@@ -22,9 +23,6 @@
   display: flex;
   height: 100%;
   align-items: center;
-  /* flex: 0 0 var(--settings-column-width, 150px);
-  min-width: calc(var(--settings-column-min-width, 100px) * 1px);
-  max-width: calc(var(--settings-column-max-width, 300px) * 1px); */
   font-size: calc(var(--setting-font-size) * 1.2);
   margin: 0;
   white-space: nowrap;
@@ -33,13 +31,9 @@
 }
 
 .valueColumn {
-    /* flex: 1; */
-    /* min-width: 0; */
     display: flex;
     align-items: center;
     height: 100%;
-    /* max-width: 100%; */
-    /* padding: 0 0.5rem; */
 
     flex: 0 0 var(--settings-column-width, 150px);
     min-width: calc(var(--settings-column-min-width, 100px) * 1px);
@@ -50,9 +44,7 @@
     font-size: var(--setting-font-size);
     font-family: inherit;
     color: #1f2937;
-    background-color: transparent; /* can keep transparent with no border*/
     outline: none;
-    border: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 

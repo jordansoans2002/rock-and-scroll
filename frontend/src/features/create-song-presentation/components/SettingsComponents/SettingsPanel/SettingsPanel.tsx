@@ -40,38 +40,42 @@ export default function SettingsPanel({
             viewBox="0 0 16 16"
             fill="none"
             aria-hidden="true">
-            <line x1="3" y1="8" x2="13" y2="8" stroke={"#333"} strokeWidth={2} strokeLinecap="round" />
+            <line x1="3" y1="13" x2="13" y2="13" stroke={"currentColor"} strokeWidth={2} strokeLinecap="round" />
         </svg>,
-        onClick: minimizePanel
+        onClick: minimizePanel,
+        className: styles.minimizeButton
     }
 
     return(
         <div className={styles.panel}>
             <div className={styles.titleBar}>
                 <span className={styles.title}>{activeView}</span>
-                <ButtonBar orientation="horizontal" endGroup={[minimize]} />
+                <div className={styles.titleBarActions}>
+                    <ButtonBar orientation="horizontal" endGroup={[minimize]} />
+                </div>
             </div>
 
-            {activeView === "presentation" && (<>
-                <SettingsRenderer
-                    settings={presentationSettings}
-                    metadata={PRESENTATION_SETTINGS_METADATA}
-                    onChange={onUpdatePresentationSettings} />
-                
-                <h2>Default Song Settings</h2>
-                <SettingsRenderer
-                    settings={defaultSongSettings}
-                    metadata={SONG_SETTINGS_METADATA}
-                    onChange={onUpdateDefaultSongSettings} />
-            </>)}
+            <div className={styles.settings}>
+                {activeView === "presentation" && (<>
+                    <SettingsRenderer
+                        settings={presentationSettings}
+                        metadata={PRESENTATION_SETTINGS_METADATA}
+                        onChange={onUpdatePresentationSettings} />
+                    
+                    <h2>Default Song Settings</h2>
+                    <SettingsRenderer
+                        settings={defaultSongSettings}
+                        metadata={SONG_SETTINGS_METADATA}
+                        onChange={onUpdateDefaultSongSettings} />
+                </>)}
 
-            {activeView === "song" && (
-                <SettingsRenderer
-                    settings={selectedSongSettings}
-                    metadata={SONG_SETTINGS_METADATA}
-                    onChange={onUpdateSongSettings} />
-            )}
-
+                {activeView === "song" && (
+                    <SettingsRenderer
+                        settings={selectedSongSettings}
+                        metadata={SONG_SETTINGS_METADATA}
+                        onChange={onUpdateSongSettings} />
+                )}
+            </div>
         </div>
     )
 }

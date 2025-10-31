@@ -23,7 +23,7 @@ export interface IPresentationGenerator {
     renderLyricsSlide(
         slide: PptxGenJS.Slide,
         settings: SongSettings,
-        block: { text1: string; text2?: string | null },
+        block: { text1: string|null; text2: string | null },
         presentationSettings: { titleStyle: TextStyle; unit: Unit; slideRatio: SlideRatio }
     ): void
 

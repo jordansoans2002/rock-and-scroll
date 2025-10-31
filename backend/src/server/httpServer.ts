@@ -15,7 +15,7 @@ export async function createServer() {
   await app.register(helmet);
 
   await app.register(cors, {
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:5173"],
     methods: ["GET", "POST"]
   })
 
@@ -25,7 +25,7 @@ export async function createServer() {
   })
 
   // Register routes
-  app.register(routes, { prefix: "/api" });
+  app.register(routes, { prefix: "/api/presentations" });
 
   return app;
 }

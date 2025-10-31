@@ -42,8 +42,8 @@ export default function ButtonBar({
                         onClick={button.onClick}
                         disabled={button.disabled}                        
                         className={`${styles.button} ${orientation === "vertical" ? styles.verticalButton : ""}`}>
-
-                        {button.label}
+                        {button.icon && <span className={styles.icon}>{button.icon}</span>}
+                        {button.label && <span className={styles.label}>{button.label}</span>}
                     </button>
                 ))}
             </div>

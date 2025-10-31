@@ -50,21 +50,66 @@
 .button {
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  justify-content: center;
+
+  gap: 0.5rem;
+  padding: 0.25rem 0.25rem;
+
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+
+  background-color: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375;
+
   cursor: pointer;
+  transition: all 0.15s ease-in-out;
+
+  user-select: none;
 }
+
+.button:has(.icon):not(:has(.label)) {
+  padding: 0.05rem;
+  aspect-ratio: 1;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #f9f4f6;
+  transform: translateY(1px); /* doesnt work for vertical buttons */
+}
+
+.button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f9fafb;
+  color: #9ca3af;
+}
+
 
 .verticalButton {
   writing-mode: vertical-rl;   /* text flows vertically */
   text-orientation: mixed;     /* keeps letters upright */
   height: auto;
-  min-height: 3rem;            /* ensure enough space */
+  min-height: 2.5rem;            /* ensure enough space */
 }
 
 .icon {
-  display: inline-flex;
+  /* display: inline-flex;
   font-size: 1rem;
   line-height: 1;
+  background-color: transparent; */
+
+    background-color: transparent;
+    border: 1px solid transparent;
 }
 
 .label {

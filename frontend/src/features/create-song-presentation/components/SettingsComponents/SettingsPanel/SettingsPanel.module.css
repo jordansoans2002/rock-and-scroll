@@ -1,12 +1,93 @@
 .panel {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    background-color: #ffffff;
+    border-left: 1px solid #e5e7eb;
+    overflow: hidden;
 }
 
 .titleBar {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0.15rem 0.5rem;
+    padding-right: 0;
+    /* min-height: 2.5rem; */
+
+    background-color: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+
+    flex-shrink: 0;
 }
 
 .title {
     flex: 1;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    text-transform: capitalize;
+    vertical-align: baseline;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.titleBarActions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+
+/* Style minimize button specifically */
+.minimizeButton {
+    padding: 0.5rem !important;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: #6b7280;
+    border-radius: 0.25rem;
+    transition: all 0.15s ease-in-out;
+}
+
+.minimizeButton:hover {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+.minimizeButton:active {
+    background-color: #d1d5db;
+}
+
+
+
+.settings {
+    flex: 1;
+    overflow-y: auto; /* Allow scrolling if content is long */
+    overflow-x: hidden;
+    
+    /* Custom scrollbar styling (optional) */
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db #f9fafb;
+}
+
+/* Webkit scrollbar styling */
+.settings::-webkit-scrollbar {
+    width: 8px;
+}
+
+.settings::-webkit-scrollbar-track {
+    background: #f9fafb;
+}
+
+.settings::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 4px;
+    border: 2px solid #f9fafb;
+}
+
+.settings::-webkit-scrollbar-thumb:hover {
+    background-color: #9ca3af;
 }

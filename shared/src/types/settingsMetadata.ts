@@ -1,4 +1,4 @@
-import { Background, ORIENTATIONS, Padding, PresentationSettings, Separation, SEPARATION_MODES, SLIDE_RATIOS, SongSettings, TextStyle, UNITS } from "./settings";
+import { Background, HORIZONTAL_ALIGNMENTS, ORIENTATIONS, Padding, PresentationSettings, Separation, SEPARATION_MODES, SLIDE_RATIOS, SongSettings, TextStyle, UNITS, VERTICAL_ALIGNMENTS } from "./settings";
 
 export type SettingType = "number" | "color" | "dropdownSelect" | "dropdownText" | "text" | "nest";
 
@@ -45,10 +45,10 @@ export const TEXT_STYLE_METADATA: Record<keyof TextStyle, SETTINGS_METADATA> = {
     label: "Horizontal Alignment",
     type: "dropdownSelect",
     options: [
-      { label: "Centre", value: "centre" },
-      { label: "Left", value: "left" },
-      { label: "Right", value: "right" },
-      { label: "Justify", value: "justify" },
+      { label: "Centre", value: HORIZONTAL_ALIGNMENTS.center },
+      { label: "Left", value: HORIZONTAL_ALIGNMENTS.left },
+      { label: "Right", value: HORIZONTAL_ALIGNMENTS.right },
+      { label: "Justify", value: HORIZONTAL_ALIGNMENTS.justify },
     ],
     description: "Horizontal alignment of text"
   },
@@ -57,9 +57,9 @@ export const TEXT_STYLE_METADATA: Record<keyof TextStyle, SETTINGS_METADATA> = {
     label: "Vertical Alignment",
     type: "dropdownSelect",
     options: [
-      { label: "Middle", value: "middle" },
-      { label: "Top", value: "top" },
-      { label: "Bottom", value: "bottom" }
+      { label: "Middle", value: VERTICAL_ALIGNMENTS.middle },
+      { label: "Top", value: VERTICAL_ALIGNMENTS.top },
+      { label: "Bottom", value: VERTICAL_ALIGNMENTS.bottom }
     ],
     description: "Vertical alignment of text"
   }

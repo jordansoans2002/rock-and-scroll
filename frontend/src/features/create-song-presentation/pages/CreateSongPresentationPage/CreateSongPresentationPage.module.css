@@ -39,7 +39,7 @@
   max-width: calc(var(--settings-max-width) * 1px);
   border-left: 1px solid #ddd;
   background: #f9f9f9;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 
@@ -66,4 +66,12 @@
   border-top: 1px solid #ddd;
   background: #fff;
   overflow: auto;
+}
+
+.footer {
+  padding: 0.15rem 0.5rem;
+  
+  background-color: #f9fafb;
+  border-top: 1px solid #b7b8bb;
+
 }

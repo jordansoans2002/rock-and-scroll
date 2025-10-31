@@ -11,6 +11,7 @@ import { useSongSettings } from "./useSongSettings";
 import { loadFromStorage, STORAGE_KEYS } from "../../../../utils/local-storage";
 import { usePersistentState } from "../../hooks/usePersistantState";
 import { useCreatePresentation } from "../../hooks/useCreatePresentation";
+import { usePreviewTrayUI } from "./usePreviewTrayUI";
 
 export const useSongPresentationState = () => {
     const [songs, setSongs] = useState<Song[]>(() => {
@@ -106,8 +107,9 @@ export const useSongPresentationState = () => {
     );
 
     const settingsPanelUI = useSettingPanelUI();
-
     const panelResizeHandlers = useResizablePanels();
+
+    const previewTrayUI = usePreviewTrayUI();
 
     
 
@@ -132,5 +134,7 @@ export const useSongPresentationState = () => {
 
         ...settingsPanelUI,
         ...panelResizeHandlers,
+
+        ...previewTrayUI,
     }
 }

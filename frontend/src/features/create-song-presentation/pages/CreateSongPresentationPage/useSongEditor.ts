@@ -1,15 +1,12 @@
 import { useState, useCallback, useMemo } from "react";
 import { Song, SongSettings } from "@rock-and-scroll/shared/types/settings";
-import { getBlankSong, SongOverview } from "../../types/song";
 
 interface UseSongEditorParams {
-    songs: Song[];
     selectedSong: Song;
     setSongs: React.Dispatch<React.SetStateAction<Song[]>>;
 }
 
 export const useSongEditor = ({
-    songs,
     selectedSong,
     setSongs,
 }: UseSongEditorParams) => {

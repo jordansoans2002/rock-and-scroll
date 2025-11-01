@@ -8,7 +8,7 @@ const getApiBaseUrl = (): string => {
     if(envUrl)
         return envUrl;
 
-    return "http://0.0.0.0:3001";
+    return "http://localhost:3001";
 }
 
 export const API_CONFIG: ApiConfig = {

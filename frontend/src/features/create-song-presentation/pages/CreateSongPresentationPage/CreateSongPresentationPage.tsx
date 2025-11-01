@@ -131,7 +131,10 @@ export default function CreateSongPresentationPage() {
                 { isPreviewOpen && <>
                     <div className={styles.resizerHorizontal} onPointerDown={resizePreview} />
                     <aside className={styles.previewTray}>
-                        <PreviewTray minimizePreview={minimizePreview} />
+                        <PreviewTray
+                            song={selectedSong}
+                            presentationSettings={presentationSettings}
+                            minimizePreview={minimizePreview} />
                     </aside>
                 </>}
                 

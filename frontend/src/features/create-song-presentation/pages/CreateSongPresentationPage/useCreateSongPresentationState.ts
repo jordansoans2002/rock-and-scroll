@@ -61,7 +61,6 @@ export const useSongPresentationState = () => {
     );
 
     const editSongHandlers = useSongEditor({
-        songs,
         selectedSong,
         setSongs
     });
@@ -82,7 +81,6 @@ export const useSongPresentationState = () => {
     });
 
     const songSettingsHandlers = useSongSettings({
-        songs,
         selectedSong,
         setSongs,
     })

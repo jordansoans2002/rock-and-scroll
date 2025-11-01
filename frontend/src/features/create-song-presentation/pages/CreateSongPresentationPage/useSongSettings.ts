@@ -3,13 +3,11 @@ import { useCallback, useMemo } from "react";
 
 
 interface UseSongSettingsParams {
-    songs: Song[];
     selectedSong: Song;
     setSongs: React.Dispatch<React.SetStateAction<Song[]>>;
 }
 
 export const useSongSettings = ({
-    songs,
     selectedSong,
     setSongs,
 }: UseSongSettingsParams) => {

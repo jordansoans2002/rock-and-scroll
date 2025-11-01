@@ -8,7 +8,7 @@ import config from "../config";
 export async function createServer() {
   const app = Fastify({ 
     logger: true,
-    bodyLimit: config.pptRequestLimits.bodyLimit
+    bodyLimit: config.bodyLimit
   });
 
   // Security headers

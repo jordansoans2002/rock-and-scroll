@@ -1,3 +1,48 @@
+import { config } from "../config";
+import { SEPARATION_MODES, Song } from "../types/settings";
+
+export function splitLyrics(song: Song): { text1: string|null; text2: string|null }[]  {
+    const stanzas = splitByStanzas(song.text1, song.text2, song.settings.stanzas)
+    const slides: { text1: string | null; text2: string | null }[] = []
+    for (const stanza of stanzas) {
+        let parts: { text1: string | null; text2: string | null }[] = [];
+        if (song.settings.separation.separationMode.includes(SEPARATION_MODES.blankLines)) {
+            // split by blank lines
+            parts = splitByBlankLines(stanza.text1, stanza.text2, song.settings.separation.blankLines ?? 2);
+            if (parts.length > config.maxSlidesPerSong) {
+                throw new Error(`Song: ${song.title} is separated by ${song.settings.separation.lines} blank lines into too many slides. Max allowed is ${config.maxSlidesPerSong}`);
+            }
+        }
+        if (song.settings.separation.separationMode.includes(SEPARATION_MODES.symbol)) {
+            // split by symbol
+            parts = splitBySymbol(stanza.text1, stanza.text2, song.settings.separation.symbol ?? ";");
+            if (parts.length > config.maxSlidesPerSong) {
+                throw new Error(`Song: ${song.title} is separated by symbol ${song.settings.separation.symbol} into too many slides. Max allowed is ${config.maxSlidesPerSong}`);
+            }
+        }
+
+        if (song.settings.separation.separationMode.includes(SEPARATION_MODES.linesPerSlide)) {
+            // split by symbol
+            parts = splitByLinesPerSlide(stanza.text1, stanza.text2, song.settings.separation.lines ?? 1);
+            if (parts.length > config.maxSlidesPerSong) {
+                throw new Error(`Song: ${song.title} is separated by ${song.settings.separation.lines} lines per slide into too many slides. Max allowed is ${config.maxSlidesPerSong}`);
+            }
+        }
+
+        if (parts)
+            slides.push(...parts);
+    }
+
+    return slides;
+}
+
+export function splitByStanzas(text1: string | null, text2: string | null, stanzas: Array<Number>) {
+    if (stanzas.length == 0) {
+      return [{ text1, text2 }]
+    }
+    return [{ text1, text2 }]
+  }
+
 // helper: split by N consecutive blank lines (tolerant of spaces/tabs)
 export function splitByBlankLines(
     text1: string | null, text2: string | null, n: number

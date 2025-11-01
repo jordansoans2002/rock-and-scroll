@@ -1,6 +1,9 @@
 import { createServer } from "./server/httpServer";
 import config from "./config";
 
+import dotenv from "dotenv"
+dotenv.config();
+
 async function start() {
   const app = await createServer();
   try {

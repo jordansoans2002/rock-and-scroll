@@ -2,12 +2,7 @@ const config = {
   port: process.env.PORT ? Number(process.env.PORT) : 3001,
   maxRequests: process.env.MAX_REQUESTS ? Number(process.env.MAX_REQUESTS) : 200,
   timeWindow: process.env.TIME_WINDOW ? Number(process.env.TIME_WINDOW) : "15 minutes",
-
-  pptRequestLimits: {
-    maxSongs: process.env.MAX_SONGS ? Number(process.env.MAX_SONGS): 20,
-    maxSlidesPerSong: process.env.MAX_SLIDES ? Number(process.env.MAX_SLIDES): 200,
-    bodyLimit: process.env.BODY_LIMIT ? Number(process.env.BODY_LIMIT) : 1_000_000 // 1MB
-  }
+  bodyLimit: 100_000_000
 };
 
 export default config;

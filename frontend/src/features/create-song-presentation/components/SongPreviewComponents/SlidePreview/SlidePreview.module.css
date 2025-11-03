@@ -33,12 +33,14 @@
 .textboxContent {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 
     user-select: none;
     -webkit-user-select: none;
 }
 
-.textboxContent span p {
+.textboxContent span {
     display: block;
     max-height: 100%;
     max-width: 100%;
@@ -81,6 +83,6 @@
 
 .textbox span {
     /* Ensure text is vertically centered within flex container */
-    /* display: block; */
-    /* max-width: 100%; */
+    display: block;
+    max-width: 100%;
 }

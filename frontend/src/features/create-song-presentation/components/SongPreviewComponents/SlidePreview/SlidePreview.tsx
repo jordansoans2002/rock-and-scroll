@@ -51,9 +51,14 @@ export default function SlidePreview({
                     boxSizing: "border-box",
                     // padding: '0.05in',
 
-                    lineHeight: 1.2,
+                    // lineHeight: 1.2,
                 }} >
-                <p>{text}</p>
+                {text.split("\n").map((line, i) => (
+                    <span key={i}>
+                        {line}
+                        <br/>
+                    </span>
+                ))}
             </div>
         </foreignObject>
     }
@@ -86,7 +91,8 @@ export default function SlidePreview({
         }
     };
 
-    console.log("preview slide", text1, text2);
+    console.log("preview text 1", text1);
+    console.log("preview text 2", text2);
 
     return (
         <div

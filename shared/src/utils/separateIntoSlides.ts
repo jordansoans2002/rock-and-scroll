@@ -49,7 +49,7 @@ export function splitByBlankLines(
 ): { text1: string|null; text2: string|null }[] {
     // build a regex that matches n or more blank lines (blank lines may contain spaces/tabs)
     // we split on the boundary between groups, so use lookahead to preserve behavior
-    const re = new RegExp(`(?:\\r?\\n[ \\t]*){${n},}`, "g");
+    const re = new RegExp(`(?:\\r?\\n[ \\t]*){${n+1},}`, "g");
     return split({text1, text2}, re);
 }
 

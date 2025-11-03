@@ -1,6 +1,6 @@
 import { SLIDE_HEIGHT_INCHES, SLIDE_WIDTH_INCHES, TextLayout } from "@rock-and-scroll/shared/types/layout";
 import { HORIZONTAL_ALIGNMENTS, HorizontalAlignment, PresentationSettings, SlideRatio, VERTICAL_ALIGNMENTS, VerticalAlignment } from "@rock-and-scroll/shared/types/settings";
-import { useEffect, useRef, useState } from "react";
+import { ReactElement, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import styles from "./SlidePreview.module.css"
 
@@ -19,28 +19,76 @@ export default function SlidePreview({
     text2,
     textbox2,
 }: SlidePreviewProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [scale, setScale] = useState(1);
+    const textbox1Ref = useRef<HTMLDivElement | null>(null);
+    const [textbox1Overflow, setTextbox1Overflow] = useState(false);
+    
+    const textbox2Ref = useRef<HTMLDivElement | null>(null);
+    const [textbox2Overflow, setTextbox2Overflow] = useState(false);
 
     const slideWidth = SLIDE_WIDTH_INCHES[presentationSettings.slideRatio];
     const slideHeight = SLIDE_HEIGHT_INCHES[presentationSettings.slideRatio];
 
-    const renderTextbox = (text: string, textbox: TextLayout, key: string) => {
+    useLayoutEffect(
+        () => {
+            const checkOverflow = (ref: React.RefObject<HTMLDivElement | null>): boolean => {
+                if(!ref.current)
+                    return false;
+
+                const hasOverflow = ref.current.scrollHeight > ref.current.clientHeight ||
+                    ref.current.scrollWidth > ref.current.clientWidth;
+                
+                return hasOverflow;
+            };
+
+            const overflow1 = checkOverflow(textbox1Ref);
+            const overflow2 = checkOverflow(textbox2Ref);
+
+            setTextbox1Overflow(prev => {
+                if(prev === overflow1)
+                    return prev;
+
+                return overflow1
+            });
+
+            setTextbox2Overflow(prev => {
+                if(prev === overflow2)
+                    return prev;
+                
+                return overflow2;
+            })
+        },
+        [
+            text1,
+            text2,
+            textbox1,
+            textbox2,
+            presentationSettings.slideRatio,
+        ]
+    );
+
+    const renderTextbox = (
+        text: string,
+        textbox: TextLayout,
+        key: string,
+        ref: React.RefObject<HTMLDivElement | null>,
+        hasOverflow: boolean
+    ) => {
+        console.log("preview textbox", textbox);
         const fontSizeInInches = textbox.fontSize / 72; // Convert points to inches
         return <foreignObject
             key={key}
             x={textbox.x}
             y={textbox.y}
             width={textbox.w}
-            height={textbox.h}
-            xmlns="https://www.s3.org/1999/xhtml">
+            height={textbox.h}>
 
             <div
-                className={styles.textboxContent}
+                ref={ref}
+                className={`${styles.textboxContent} ${hasOverflow ? styles.textboxOverflow : ''}`}
                 style={{
                     ...getAlignmentStyles(textbox.align, textbox.valign),
                     fontFamily: textbox.fontFace,
-                    fontSize: `${fontSizeInInches}pt`,
+                    fontSize: `${textbox.fontSize/(72*100)}in`,
                     color: textbox.color,
                     textAlign: textbox.align,
 
@@ -63,41 +111,9 @@ export default function SlidePreview({
         </foreignObject>
     }
 
-    
-    const getTextboxStyle = (textbox: TextLayout): React.CSSProperties => {
-        const fontSizeInInches = textbox.fontSize / 72; // Convert points to inches
-        return {
-            position: "absolute",
-            left: `${textbox.x}in`,
-            top: `${textbox.y}in`,
-            width: `${textbox.w}in`,
-            height: `${textbox.h}in`,
-
-            fontFamily: textbox.fontFace,
-            fontSize: `${fontSizeInInches}pt`,
-            color: textbox.color,
-
-            textAlign: textbox.align,
-            display: 'flex',
-            alignItems: mapVerticalAlignment(textbox.valign),
-            justifyContent: mapHorizontalAlignment(textbox.align),
-
-            whiteSpace: textbox.wrap ? 'normal' : 'nowrap',
-            wordWrap: textbox.wrap ? 'break-word' : "normal",
-            overflow: "hidden",
-
-            boxSizing: "border-box",
-            // padding: '8px',
-        }
-    };
-
-    console.log("preview text 1", text1);
-    console.log("preview text 2", text2);
-
     return (
         <div
-            ref={containerRef}
-            className={styles.previewContainer}
+            className={`${styles.previewContainer} ${textbox1Overflow || textbox2Overflow ? styles.slideOverflow : ""}`}
             style={{aspectRatio: `${slideWidth} / ${slideHeight}`}}>
 
             <svg
@@ -106,7 +122,7 @@ export default function SlidePreview({
                 height="100%"
                 preserveAspectRatio="xMidYMid meet"
                 className={styles.slideSvg}
-                xmlns="http://www.w3.org/2000/org">
+                xmlns="http://www.w3.org/2000/svg">
                 
                 <rect
                     x="0"
@@ -116,38 +132,20 @@ export default function SlidePreview({
                     fill="#ffffff" />
 
 
-                {text1 && textbox1 && renderTextbox(text1, textbox1, 'textbox1')}
+                {
+                    text1 &&
+                    textbox1 && 
+                    renderTextbox(
+                        text1,
+                        textbox1,
+                        'textbox1',
+                        textbox1Ref,
+                        textbox1Overflow
+                    )
+                }
 
-                {text2 && textbox2 && renderTextbox(text2, textbox2, 'textbox2')}
+                {text2 && textbox2 && renderTextbox(text2, textbox2, 'textbox2', textbox2Ref, textbox2Overflow)}
             </svg>
-
-            {/* <div
-                className={styles.slideContent}
-                style={{
-                    width: `${slideWidth}in`,
-                    height: `${slideHeight}in`,
-                    transform: `translate(-50%, -50%) scale(${scale})`,
-                    backgroundColor: "#ffffff"
-                }}>
-                
-                {text1 && textbox1 && (
-                    <div
-                        className={styles.textbox}
-                        style={getTextboxStyle(textbox1)}>
-                        
-                        <span>{text1}</span>
-                    </div>
-                )}
-                {text2 && textbox2 && (
-                    <div
-                        className={styles.textbox}
-                        style={getTextboxStyle(textbox2)}>
-                        
-                        <span>{text2}</span>
-                    </div>
-                )}
-            </div> */}
-
         </div>
     )
 }

@@ -1,5 +1,5 @@
-import { useState, useCallback, useMemo } from "react";
-import { Song, SongSettings } from "@rock-and-scroll/shared/types/settings";
+import { useCallback } from "react";
+import { Song } from "@rock-and-scroll/shared/types/settings";
 
 interface UseSongEditorParams {
     selectedSong: Song;

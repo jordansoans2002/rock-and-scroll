@@ -1,8 +1,6 @@
 import { CreatePresentationRequest } from "@rock-and-scroll/shared/types/api";
 import { IPresentationGenerator } from "../services/presentationGenerator/IPresentationGenerator";
-import { SEPARATION_MODES } from "@rock-and-scroll/shared/types/settings";
-import { splitByBlankLines, splitByLinesPerSlide, splitByStanzas, splitBySymbol, splitLyrics } from "@rock-and-scroll/shared/utils/separateIntoSlides"
-import { sl } from "zod/v4/locales";
+import { splitLyrics } from "@rock-and-scroll/shared/utils/separateIntoSlides"
 import { config } from "@rock-and-scroll/shared/config";
 
 export class GeneratePresentationUseCase {

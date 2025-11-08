@@ -10,11 +10,10 @@ interface ColorInputProps {
 }
 
 export default function ColorInput({
-    setting,
     value,
     onChange,
 }: ColorInputProps) {
-    const [showPicker, setShowPicker] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
   const [inputValue, setInputValue] = useState(value);
   const pickerRef = useRef<HTMLDivElement>(null);
   const colorInputRef = useRef<HTMLInputElement>(null);

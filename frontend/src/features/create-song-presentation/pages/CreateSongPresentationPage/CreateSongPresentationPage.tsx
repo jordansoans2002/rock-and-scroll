@@ -6,15 +6,15 @@ import styles from "./CreateSongPresentationPage.module.css";
 import ButtonBar from "../../components/ButtonBar/ButtonBar";
 import type { ButtonConfig } from "../../components/ButtonBar/ButtonBar";
 import SettingsPanel from "../../components/SettingsComponents/SettingsPanel/SettingsPanel";
-import { useSongPresentationState } from "./useCreateSongPresentationState";
+import { useSongPresentationState } from "../../hooks/useCreateSongPresentationState";
 
 
 
 
 export default function CreateSongPresentationPage() {
     const {
-        songs,
-        selectedSongId,
+        // songs,
+        // selectedSongId,
         selectedSong,
         songOverviews,
         presentationSettings,
@@ -38,9 +38,9 @@ export default function CreateSongPresentationPage() {
         updateSelectedSongSettings,
 
         handleCreatePresentation,
-        isCreating,
-        creationError,
-        clearCreationError,
+        // isCreating,
+        // creationError,
+        // clearCreationError,
 
         activeView,
         toggleActiveView,

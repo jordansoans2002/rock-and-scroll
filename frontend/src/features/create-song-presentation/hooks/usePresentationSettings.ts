@@ -3,16 +3,12 @@ import { useCallback } from "react";
 
 
 interface UsePresentationSettingsParams {
-    presentationSettings: PresentationSettings;
     setPresentationSettings: React.Dispatch<React.SetStateAction<PresentationSettings>>;
-    defaultSongSettings: SongSettings;
     setDefaultSongSettings: React.Dispatch<React.SetStateAction<SongSettings>>;
 }
 
 export const usePresentationSettings = ({
-    presentationSettings,
     setPresentationSettings,
-    defaultSongSettings,
     setDefaultSongSettings,
 }: UsePresentationSettingsParams) => {
 

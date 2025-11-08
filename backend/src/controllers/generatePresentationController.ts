@@ -1,6 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { CreatePresentationRequestSchema } from "../dto/generatePresentationRequestDto";
-import { MockGenerator } from "../services/presentationGenerator/MockPresentationGenerator";
 import { GeneratePresentationUseCase } from "../usecases/generatePresentationUseCase";
 import { RealPresentationGenerator } from "../services/presentationGenerator/RealPresentationGenerator";
 import { CreatePresentationRequest } from "@rock-and-scroll/shared/types/api";

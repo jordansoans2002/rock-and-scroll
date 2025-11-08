@@ -4,7 +4,7 @@ import ButtonBar, { ButtonConfig } from "../../ButtonBar/ButtonBar";
 import styles from "./SettingsPanel.module.css"
 import SettingsRenderer from "../SettingsRenderer/SettingsRenderer";
 import { PRESENTATION_SETTINGS_METADATA, SONG_SETTINGS_METADATA } from "@rock-and-scroll/shared/types/settingsMetadata";
-import { ActiveSettingView } from "src/features/create-song-presentation/pages/CreateSongPresentationPage/useSettingPanelUI";
+import { ActiveSettingView } from "src/features/create-song-presentation/hooks/useSettingPanelUI";
 
 interface SongPanelProps {
     activeView: ActiveSettingView;

@@ -1,17 +1,17 @@
 import { useCallback, useMemo, useState } from "react"
-import { getBlankSong, getSongOverview } from "../../types/song"
+import { getBlankSong, getSongOverview } from "../types/song"
 import { PresentationSettings, Song, SongSettings } from "@rock-and-scroll/shared/types/settings";
-import { useSongEditor } from "./useSongEditor";
-import { useSongList } from "./useSongList";
 import { useResizablePanels } from "./useResizablePanels";
 import { DEFAULT_PRESENTATION_SETTINGS, DEFAULT_SONG_SETTINGS } from "@rock-and-scroll/shared/defaults/defaultSettings";
-import { useSettingPanelUI } from "./useSettingPanelUI";
 import { usePresentationSettings } from "./usePresentationSettings";
-import { useSongSettings } from "./useSongSettings";
-import { loadFromStorage, STORAGE_KEYS } from "../../../../utils/local-storage";
-import { usePersistentState } from "../../hooks/usePersistantState";
-import { useCreatePresentation } from "../../hooks/useCreatePresentation";
+import { loadFromStorage, STORAGE_KEYS } from "../../../utils/local-storage";
+import { usePersistentState } from "./usePersistantState";
+import { useCreatePresentation } from "./useCreatePresentation";
 import { usePreviewTrayUI } from "./usePreviewTrayUI";
+import { useSettingPanelUI } from "./useSettingPanelUI";
+import { useSongEditor } from "./useSongEditor";
+import { useSongList } from "./useSongList";
+import { useSongSettings } from "./useSongSettings";
 
 export const useSongPresentationState = () => {
     const [songs, setSongs] = useState<Song[]>(() => {
@@ -74,9 +74,7 @@ export const useSongPresentationState = () => {
     });
 
     const presentationSettingsHandlers = usePresentationSettings({
-        presentationSettings,
         setPresentationSettings,
-        defaultSongSettings,
         setDefaultSongSettings,
     });
 

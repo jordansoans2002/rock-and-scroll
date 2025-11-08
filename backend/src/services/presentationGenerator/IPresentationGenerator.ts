@@ -1,6 +1,5 @@
 import PptxGenJS from "pptxgenjs";
-import { SlideRatio, Unit } from "./layout";
-import { TextStyle, SongSettings } from "@rock-and-scroll/shared/types/settings";
+import { TextStyle, SongSettings, SlideRatio, Unit } from "@rock-and-scroll/shared/types/settings";
 
 /**
  * IPptGenerator defines the contract for any PPTX generator implementation.

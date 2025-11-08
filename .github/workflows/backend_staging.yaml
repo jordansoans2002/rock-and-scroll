@@ -1,0 +1,47 @@
+name: Deploy backend to staging
+
+on:
+  push:
+    branches:
+      - staging
+    paths: 
+      - "backend/**"
+      - ".github/workflows/backend_staging.yml"
+
+jobs:
+  deploy-backend-to-staging:
+    runs-on: stage
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install pnpm
+
+      - name: Install dependencies
+        working-directory: backend
+        run: pnpm install --frozen-lockfile
+
+      - name: Build backend
+        working-directory: backend
+        run: pnpm build:backend
+
+      - name: Deploy backend
+        run: |
+          # Copy build output to deployment directory
+          sudo rm -rf /var/www/rock-and-scroll/backend/dist
+          sudo mkdir -p /var/www/rock-and-scroll/backend
+          sudo cp -r backend/dist /var/www/rock-and-scroll/backend/
+          sudo cp backend/package.json /var/www/rock-and-scroll/backend/
+          cd /var/www/rock-and-scroll/backend
+          pnpm install --prod
+
+      - name: Restart backend service
+        run: sudo systemctl restart rock-and-scroll

@@ -1,6 +1,6 @@
 import PptxGenJS from "pptxgenjs";
 import { IPresentationGenerator } from "./IPresentationGenerator";
-import { TextStyle, SongSettings, ORIENTATIONS, SlideRatio, Unit, Orientation } from "@rock-and-scroll/shared/types/settings";
+import { TextStyle, SongSettings, SlideRatio, Unit } from "@rock-and-scroll/shared/types/settings";
 import { SLIDE_HEIGHT_INCHES, SLIDE_WIDTH_INCHES } from "@rock-and-scroll/shared/types/layout";
 import { arrangeLyricsSlide, arrangeTitleSlide } from "@rock-and-scroll/shared/utils/arrangeInSlide";
 
@@ -43,9 +43,6 @@ export class RealPresentationGenerator implements IPresentationGenerator {
     block: { text1: string | null; text2: string | null },
     presentationSettings: { titleStyle: TextStyle; unit: Unit; slideRatio: SlideRatio }
   ) {
-    const unit: Unit = presentationSettings.unit;
-    const text1Style = settings.text1Style;
-    const text2Style = settings.text2Style;
     const bg = settings.background;
     slide.background = { color: bg.color };
 

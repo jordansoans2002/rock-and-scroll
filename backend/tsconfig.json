@@ -26,14 +26,13 @@
     /* Path Mapping */
     "baseUrl": ".",
     "paths": {
-      // "@/*": ["./src/*"],
-      "@rock-and-scroll/shared/*": ["../shared/src/*"]
+      "@rock-and-scroll/shared/*": ["../shared/dist/*"]
     }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"],
   "references": [
-    { "path": "../shared/tsconfig.json" }
+    { "path": "../shared" }
   ],
   "ts-node": {
     "esm": true,

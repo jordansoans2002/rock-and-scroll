@@ -1,6 +1,6 @@
 import { SLIDE_HEIGHT_INCHES, SLIDE_WIDTH_INCHES, TextLayout } from "@rock-and-scroll/shared/types/layout";
-import { HORIZONTAL_ALIGNMENTS, HorizontalAlignment, PresentationSettings, SlideRatio, VERTICAL_ALIGNMENTS, VerticalAlignment } from "@rock-and-scroll/shared/types/settings";
-import { ReactElement, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { HORIZONTAL_ALIGNMENTS, HorizontalAlignment, PresentationSettings, VERTICAL_ALIGNMENTS, VerticalAlignment } from "@rock-and-scroll/shared/types/settings";
+import { useLayoutEffect, useRef, useState } from "react";
 
 import styles from "./SlidePreview.module.css"
 
@@ -74,7 +74,6 @@ export default function SlidePreview({
         hasOverflow: boolean
     ) => {
         console.log("preview textbox", textbox);
-        const fontSizeInInches = textbox.fontSize / 72; // Convert points to inches
         return <foreignObject
             key={key}
             x={textbox.x}

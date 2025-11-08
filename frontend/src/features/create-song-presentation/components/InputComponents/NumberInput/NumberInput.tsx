@@ -77,7 +77,7 @@ export default function NumberInput({
                         break;
             }
         },
-        [onChange]
+        [onChange, value]
     )
 
     React.useEffect(() => {
@@ -91,6 +91,7 @@ export default function NumberInput({
                 value={inputValue}
                 onChange={handleInputChange}
                 onBlur={handleBlur}
+                onKeyDown={handleKeyDown}
                 min={setting.min}
                 max={setting.max}
                 step={setting.step || 1}

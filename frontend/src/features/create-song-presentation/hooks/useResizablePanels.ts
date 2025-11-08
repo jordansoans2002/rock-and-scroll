@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from "react";
-import { PAGE_VARS } from "../../constants/css";
-import { ResizeConfig, useResizer } from "../../hooks/useResizer";
+import { PAGE_VARS } from "../constants/css";
+import { ResizeConfig, useResizer } from "./useResizer";
 
 const LAYOUT_DEFAULTS = {
     songList: { width: 300, min: 300, max: 350 },

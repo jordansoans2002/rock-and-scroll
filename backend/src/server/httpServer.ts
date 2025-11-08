@@ -25,7 +25,7 @@ export async function createServer() {
   })
 
   // Register routes
-  app.register(routes, { prefix: "/api/presentations" });
+  app.register(routes, { prefix: "/api/v1" });
 
   return app;
 }

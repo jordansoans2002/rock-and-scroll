@@ -18,8 +18,8 @@ export const API_CONFIG: ApiConfig = {
 };
 
 export const API_ENDPOINTS = {
-    DEFAULT_SETTINGS: "/api/presentations/default-settings",
-    CREATE_PRESENTATION: "/api/presentations/create",
+    DEFAULT_SETTINGS: "/api/v1/presentations/default-settings",
+    CREATE_PRESENTATION: "/api/v1/presentations/create",
 } as const;
 
 export const buildApiUrl = (endpoint: string): string => {

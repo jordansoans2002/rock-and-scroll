@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react";
-import { getBlankSong, SongOverview } from "../../types/song";
+import { useCallback } from "react";
+import { getBlankSong, SongOverview } from "../types/song";
 import { Song, SongSettings } from "@rock-and-scroll/shared/types/settings";
 
 interface UseSongListParams {

@@ -20,7 +20,7 @@ export default function SettingRow({
 }: SettingRowProps) {
     return (
         <div className={styles.row}>
-            <p className={`${styles.labelColumn} ${topLevel && topLevelStyle.topLevelLabel}`}>{label}</p>
+            <p className={`${styles.labelColumn} ${topLevel && topLevelStyle.topLevelLabel}`} title={description}>{label}</p>
             
             <div className={styles.resizerVertical} onPointerDown={resize}></div>
             

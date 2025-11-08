@@ -26,7 +26,6 @@ export default function DropdownTextInput<T = string>({
     filterFunction,
     getDisplayValue = (item) => String(item),
     disabled = false,
-    allowCustom = true,
     editable = true,
     error,
     className = ''

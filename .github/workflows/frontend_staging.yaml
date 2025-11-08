@@ -1,0 +1,20 @@
+name: Deploy frontend to staging
+
+on:
+  push:
+    branches:
+      - staging
+    paths: 
+      - "frontend/**"
+      - ".github/workflows/frontend_staging.yml"
+
+jobs:
+  deploy-frontend-to-staging:
+    runs-on: stage
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Build and deploy
+        run: sudo systemctl restart rock-and-scroll

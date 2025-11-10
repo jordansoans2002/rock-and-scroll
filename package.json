@@ -11,7 +11,7 @@
     "build:shared": "pnpm --filter @rock-and-scroll/shared build",
     "build:frontend": "pnpm --filter rock-and-scroll-frontend build",
     "build:backend": "pnpm --filter rock-and-scroll-backend build",
-    "build:all": "pnpm --filter rock-and-scroll-frontend build && pnpm --filter rock-and-scroll-backend build",
+    "build:all": "pnpm --filter @rock-and-scroll/shared build && pnpm --filter rock-and-scroll-frontend build && pnpm --filter rock-and-scroll-backend build",
     "clean": "pnpm --recursive exec rm -rf dist node_modules"
   },
   "devDependencies": {

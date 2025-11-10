@@ -7,7 +7,7 @@ on:
     paths: 
       - "backend/**"
       - "shared/**"
-      - ".github/workflows/backend_staging.yml"
+      - ".github/workflows/backend_staging.yaml"
 
 jobs:
   deploy-backend-to-staging:

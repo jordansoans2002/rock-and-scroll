@@ -31,7 +31,7 @@ jobs:
           # Copy build output to deployment directory
           sudo rm -rf /opt/church/rock-and-scroll/backend
           sudo mkdir -p /opt/church/rock-and-scroll/  
-          pnpm deploy --filter rock-and-scroll-backend /opt/church/rock-and-scroll/backend
+          sudo pnpm deploy --filter rock-and-scroll-backend /opt/church/rock-and-scroll/backend
 
       - name: Restart backend service
         run: sudo systemctl restart rock-and-scroll

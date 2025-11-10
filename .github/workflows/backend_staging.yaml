@@ -28,7 +28,6 @@ jobs:
 
       - name: Deploy backend
         run: |
-          # Copy build output to deployment directory
           sudo rm -rf /opt/church/rock-and-scroll/backend
           sudo mkdir -p /opt/church/rock-and-scroll/  
           sudo pnpm deploy --filter rock-and-scroll-backend /opt/church/rock-and-scroll/backend

@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev:shared": "pnpm --filter @rock-and-scroll/shared dev",
     "dev:frontend": "pnpm --filter rock-and-scroll-frontend dev",
     "dev:backend": "pnpm --filter rock-and-scroll-backend dev",
     "dev:all": "pnpm --parallel --filter rock-and-scroll-frontend --filter rock-and-scroll-backend dev",
+
+    "build:shared": "pnpm --filter @rock-and-scroll/shared build",
     "build:frontend": "pnpm --filter rock-and-scroll-frontend build",
     "build:backend": "pnpm --filter rock-and-scroll-backend build",
     "build:all": "pnpm --filter rock-and-scroll-frontend build && pnpm --filter rock-and-scroll-backend build",

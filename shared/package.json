@@ -2,9 +2,9 @@
   "name": "@rock-and-scroll/shared",
   "version": "1.0.0",
   "type": "module",
-  "exports": {
-    "./*": "./src/*"
-  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  
   "scripts": {
     "dev": "tsc -p tsconfig.json --watch",
     "build": "tsc -p tsconfig.json",

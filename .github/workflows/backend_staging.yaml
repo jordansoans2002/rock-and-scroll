@@ -18,11 +18,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        working-directory: backend
+        working-directory: rock-and-scroll
         run: pnpm install --frozen-lockfile
 
       - name: Build backend
-        working-directory: backend
+        working-directory: rock-and-scroll
         run: pnpm build:backend
 
       - name: Deploy backend

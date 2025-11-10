@@ -34,6 +34,7 @@ jobs:
           sudo cp -r backend/dist /opt/church/rock-and-scroll/backend/
           sudo cp backend/package.json /opt/church/rock-and-scroll/backend/
           cd /opt/church/rock-and-scroll/backend
+          pnpm deploy --filter rock-and-scroll-backend /opt/church/rock-and-scroll/backend
           sudo -u rock-and-scroll pnpm install --prod
 
       - name: Restart backend service

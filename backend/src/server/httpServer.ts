@@ -15,7 +15,7 @@ export async function createServer() {
   await app.register(helmet);
 
   await app.register(cors, {
-    origin: ["http://localhost:5173"],
+    origin: config.corsOrigins,
     methods: ["GET", "POST"]
   })
 

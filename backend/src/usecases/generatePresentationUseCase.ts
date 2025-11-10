@@ -1,14 +1,14 @@
 import { CreatePresentationRequest } from "@rock-and-scroll/shared/types/api";
 import { IPresentationGenerator } from "../services/presentationGenerator/IPresentationGenerator";
 import { splitLyrics } from "@rock-and-scroll/shared/utils/separateIntoSlides"
-import { config } from "@rock-and-scroll/shared/config";
+import { limits } from "@rock-and-scroll/shared/config";
 
 export class GeneratePresentationUseCase {
   constructor(private generator: IPresentationGenerator) { }
 
   async execute(payload: CreatePresentationRequest): Promise<Buffer> {
-    if (payload.songs.length > config.maxSongs) {
-      throw new Error(`Too many songs. Max songs allowed at a time are ${config.maxSongs}`)
+    if (payload.songs.length > limits.maxSongs) {
+      throw new Error(`Too many songs. Max songs allowed at a time are ${limits.maxSongs}`)
     }
 
     const presentation = this.generator.renderSlideLayout(payload.presentationSettings.slideRatio)

@@ -6,6 +6,7 @@ on:
       - staging
     paths: 
       - "frontend/**"
+      - "shared/**"
       - ".github/workflows/frontend_staging.yml"
 
 jobs:

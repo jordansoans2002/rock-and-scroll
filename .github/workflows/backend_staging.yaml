@@ -6,6 +6,7 @@ on:
       - staging
     paths: 
       - "backend/**"
+      - "shared/**"
       - ".github/workflows/backend_staging.yml"
 
 jobs:
@@ -36,11 +37,11 @@ jobs:
       - name: Deploy backend
         run: |
           # Copy build output to deployment directory
-          sudo rm -rf /var/www/rock-and-scroll/backend/dist
-          sudo mkdir -p /var/www/rock-and-scroll/backend
-          sudo cp -r backend/dist /var/www/rock-and-scroll/backend/
-          sudo cp backend/package.json /var/www/rock-and-scroll/backend/
-          cd /var/www/rock-and-scroll/backend
+          sudo rm -rf /opt/church/rock-and-scroll/backend/dist
+          sudo mkdir -p /opt/church/rock-and-scroll/backend/
+          sudo cp -r backend/dist /opt/church/rock-and-scroll/backend/
+          sudo cp backend/package.json /opt/church/rock-and-scroll/backend/
+          cd /opt/church/rock-and-scroll/backend
           pnpm install --prod
 
       - name: Restart backend service

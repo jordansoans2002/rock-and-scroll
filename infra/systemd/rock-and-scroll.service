@@ -1,0 +1,18 @@
+[Unit]
+Description=Rock and Scroll PPT Generation Backend
+After=network.target
+StartLimitIntervalSec=60
+
+[Service]
+WorkingDirectory=/opt/church/rock-and-scroll/backend
+ExecStart=/usr/bin/node dist/index.js
+EnvironmentFile=/etc/rock-and-scroll/.env
+User=rock-and-scroll
+Group=rock-and-scroll
+
+Restart=on-failure
+RestartSec=5
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid"
+
 import { DEFAULT_SONG_SETTINGS } from "@rock-and-scroll/shared/defaults/defaultSettings";
 import { Song, SongSettings } from "@rock-and-scroll/shared/types/settings";
 
@@ -25,7 +27,7 @@ export const getSongOverview = (song: Song): SongOverview => {
 
 export const getBlankSong = (settings?: SongSettings): Song => {    
     return {
-        id: `song_${crypto.randomUUID()}`,
+        id: `song_${uuidv4()}`,
         title: "",
         lang1: null,
         text1: null,

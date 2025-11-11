@@ -31,9 +31,22 @@ export class RealPresentationGenerator implements IPresentationGenerator {
         color: background.color,
     };
 
+    const textbox = arrangeTitleSlide(titleStyle)
     slide.addText(
       title,
-      arrangeTitleSlide(titleStyle)
+      {
+        x: textbox.x as PptxGenJS.Coord,
+        y: textbox.y as PptxGenJS.Coord,
+        w: textbox.w as PptxGenJS.Coord,
+        h: textbox.h as PptxGenJS.Coord,
+        fontFace: textbox.fontFace,
+        fontSize: textbox.fontSize,
+        color: textbox.color,
+        bold: textbox.bold,
+        align: textbox.align,
+        valign: textbox.valign,
+        wrap: textbox.wrap,
+      }
     );
   }
 
@@ -58,10 +71,40 @@ export class RealPresentationGenerator implements IPresentationGenerator {
     )
 
     if(block.text1 && textboxes.textbox1) {
-      slide.addText(block.text1, textboxes.textbox1);
+      slide.addText(
+        block.text1,
+        {
+          x: textboxes.textbox1.x as PptxGenJS.Coord,
+          y: textboxes.textbox1.y as PptxGenJS.Coord,
+          w: textboxes.textbox1.w as PptxGenJS.Coord,
+          h: textboxes.textbox1.h as PptxGenJS.Coord,
+          fontFace: textboxes.textbox1.fontFace,
+          fontSize: textboxes.textbox1.fontSize,
+          color: textboxes.textbox1.color,
+          bold: textboxes.textbox1.bold,
+          align: textboxes.textbox1.align,
+          valign: textboxes.textbox1.valign,
+          wrap: textboxes.textbox1.wrap,
+        }
+      );
     }
     if(block.text2 && textboxes.textbox2) {
-      slide.addText(block.text2, textboxes.textbox2);
+      slide.addText(
+        block.text2, 
+        {
+          x: textboxes.textbox2.x as PptxGenJS.Coord,
+          y: textboxes.textbox2.y as PptxGenJS.Coord,
+          w: textboxes.textbox2.w as PptxGenJS.Coord,
+          h: textboxes.textbox2.h as PptxGenJS.Coord,
+          fontFace: textboxes.textbox2.fontFace,
+          fontSize: textboxes.textbox2.fontSize,
+          color: textboxes.textbox2.color,
+          bold: textboxes.textbox2.bold,
+          align: textboxes.textbox2.align,
+          valign: textboxes.textbox2.valign,
+          wrap: textboxes.textbox2.wrap,
+        }
+      );
     }
   }
 }

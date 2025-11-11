@@ -65,7 +65,6 @@ jobs:
       
       - name: Install production dependencies
         run: |
-          echo "Installing production dependencies..."
           cd /opt/rock-and-scroll
           pnpm install --prod --frozen-lockfile
           echo "✓ Dependencies installed"

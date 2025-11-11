@@ -1,12 +1,12 @@
-import { SLIDE_HEIGHT_INCHES, SLIDE_WIDTH_INCHES } from "../types/layout";
+import { SLIDE_HEIGHT_INCHES, SLIDE_WIDTH_INCHES, TextLayout } from "../types/layout";
 import { Orientation, ORIENTATIONS, Padding, SlideRatio, TextStyle, Unit } from "../types/settings";
 import PptxGenJS from "pptxgenjs";
 
 
 export function arrangeTitleSlide(
     titleStyle: TextStyle
-): PptxGenJS.TextPropsOptions {
-    const textbox: PptxGenJS.TextPropsOptions = {
+): TextLayout {
+    const textbox: TextLayout = {
       x: 0.5,
       y: "40%",
       w: "90%",
@@ -33,9 +33,9 @@ export function arrangeLyricsSlide(
     text1Style: TextStyle,
     text2: boolean,
     text2Style: TextStyle,
-): {textbox1: PptxGenJS.TextPropsOptions|null, textbox2: PptxGenJS.TextPropsOptions|null} {
-    let textbox1: PptxGenJS.TextPropsOptions|null = null;
-    let textbox2: PptxGenJS.TextPropsOptions|null = null;
+): {textbox1: TextLayout|null, textbox2: TextLayout|null} {
+    let textbox1: TextLayout|null = null;
+    let textbox2: TextLayout|null = null;
 
     const marginLeftIn = toInches(padding.left, unit);
     const marginRightIn = toInches(padding.right, unit);

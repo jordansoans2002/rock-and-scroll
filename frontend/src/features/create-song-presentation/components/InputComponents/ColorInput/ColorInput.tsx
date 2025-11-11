@@ -80,7 +80,7 @@ export default function ColorInput({
         onChange={handleInputChange}
         onBlur={handleInputBlur}
         placeholder="#000000"
-        className={`${styles.input} `}
+        className={styles.input}
         maxLength={7}
       />
       

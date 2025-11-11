@@ -1,15 +1,15 @@
 {
   "name": "@rock-and-scroll/shared",
   "version": "1.0.0",
-  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": ["dist"],
   "exports": {
-    "./*": "./dist/*"
+    "./*": "./dist/*.js"
   },
   "scripts": {
-    "dev": "tsc -p tsconfig.json --watch",
-    "build": "tsc -p tsconfig.json",
+    "dev": "tsc --watch",
+    "build": "tsc",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

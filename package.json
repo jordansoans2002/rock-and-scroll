@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev:shared": "pnpm --filter @rock-and-scroll/shared dev",
-    "dev:frontend": "pnpm --filter rock-and-scroll-frontend dev",
-    "dev:backend": "pnpm --filter rock-and-scroll-backend dev",
-    "dev:all": "pnpm --parallel --filter rock-and-scroll-frontend --filter rock-and-scroll-backend dev",
+    "dev:frontend": "pnpm --filter=@rock-and-scroll/shared dev && pnpm --filter=rock-and-scroll-frontend dev",
+    "dev:backend": "pnpm --filter=@rock-and-scroll/shared dev && pnpm --filter=rock-and-scroll-backend dev",
+    "dev:all": "pnpm --filter=@rock-and-scroll/shared dev && pnpm --parallel --filter=rock-and-scroll-frontend --filter=rock-and-scroll-backend dev",
 
-    "build:shared": "pnpm --filter @rock-and-scroll/shared build",
-    "build:frontend": "pnpm --filter rock-and-scroll-frontend build",
-    "build:backend": "pnpm --filter rock-and-scroll-backend build",
-    "build:all": "pnpm --filter @rock-and-scroll/shared build && pnpm --filter rock-and-scroll-frontend build && pnpm --filter rock-and-scroll-backend build",
+    "build:shared": "pnpm --filter=@rock-and-scroll/shared build",
+    "build:frontend": "pnpm --filter=@rock-and-scroll/shared build && pnpm --filter=rock-and-scroll-frontend build",
+    "build:backend": "pnpm -r --filter=@rock-and-scroll/shared build && pnpm -r --filter=rock-and-scroll-backend build",
+    "build:all": "pnpm --filter=@rock-and-scroll/shared build && pnpm --filter=rock-and-scroll-frontend build && pnpm --filter=rock-and-scroll-backend build",
+
+    "start:backend": "pnpm --filter=rock-and-scroll-backend start",
     "clean": "pnpm --recursive exec rm -rf dist node_modules"
   },
   "devDependencies": {

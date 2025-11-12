@@ -21,7 +21,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build frontend
-        run: pnpm build:frontend
+        run: pnpm build:frontend --mode staging
       
       - name: Deploy to S3
         run: |

@@ -2,4 +2,4 @@ packages:
   - 'frontend'
   - 'backend'
   - 'shared'
-inject-workspace-packages: true
+injectWorkspacePackages: true

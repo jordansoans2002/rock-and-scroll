@@ -23,5 +23,9 @@ export const API_ENDPOINTS = {
 } as const;
 
 export const buildApiUrl = (endpoint: string): string => {
+    console.log(`build api url ${import.meta.env.MODE} ${import.meta.env.PROD}`)
+    if (import.meta.env.MODE === "production") // build:frontend --mode production
+        return endpoint
+
     return `${API_CONFIG.baseUrl}${endpoint}`;
 }

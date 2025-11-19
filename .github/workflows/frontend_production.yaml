@@ -23,7 +23,7 @@ jobs:
       - name: Build frontend
         run: pnpm build:frontend --mode production
 
-      - name: Deploy to S3
+      - name: Deploy to S3 bucket
         run: |
           aws s3 sync frontend/dist/ s3://rock-and-scroll/ \
           --delete \

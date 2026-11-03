@@ -1,0 +1,73 @@
+name: Deploy backend to production
+
+on:
+  push:
+    branches:
+      - main
+    paths: 
+      - "backend/**"
+      - "shared/**"
+      - ".github/workflows/backend_production.yaml"
+
+jobs:
+  deploy-backend-to-staging:
+    runs-on: production
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build backend
+        run: pnpm build:backend
+
+      - name: Deploy to production directory
+        run: |          
+          # Create deployment directory structure
+          mkdir -p /opt/rock-and-scroll/{backend,shared}
+          
+          # Deploy shared package (compiled code + package.json)
+          rsync -av --delete \
+            --exclude='node_modules' \
+            --exclude='src' \
+            --exclude='.git' \
+            --exclude='*.ts' \
+            --exclude='tsconfig.json' \
+            ./shared/dist/ /opt/rock-and-scroll/shared/dist/
+          
+          rsync -av \
+            ./shared/package.json \
+            /opt/rock-and-scroll/shared/
+          
+          # Deploy backend (compiled code + package.json)
+          rsync -av --delete \
+            --exclude='node_modules' \
+            --exclude='src' \
+            --exclude='.git' \
+            --exclude='*.ts' \
+            --exclude='tsconfig.json' \
+            ./backend/dist/ /opt/rock-and-scroll/backend/dist/
+          
+          rsync -av \
+            ./backend/package.json \
+            /opt/rock-and-scroll/backend/
+          
+          # Copy root package.json and lockfile
+          rsync -av \
+            ./package.json \
+            ./pnpm-lock.yaml \
+            ./pnpm-workspace.yaml \
+            /opt/rock-and-scroll/ 2>/dev/null || true
+          
+          echo "✓ Deployment complete"
+      
+      - name: Install production dependencies
+        run: |
+          cd /opt/rock-and-scroll
+          pnpm install --prod --frozen-lockfile
+          echo "✓ Dependencies installed"
+
+      - name: Restart backend service
+        run: sudo systemctl restart rock-and-scroll
